@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="KGk-i7-Jjw" customClass="UsersTableViewCell" customModule="CryptoMail" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="UsersTableViewCell" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLR-55-30t">
+                        <rect key="frame" x="16" y="5" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-gE-kg4">
+                        <rect key="frame" x="16" y="27.5" width="32" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="it3-FS-wYG">
+                        <rect key="frame" x="283.5" y="9" width="20.5" height="33"/>
+                        <state key="normal" image="square.and.pencil" catalog="system"/>
+                        <connections>
+                            <action selector="writeMessage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hXI-nU-7oE"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="it3-FS-wYG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cLR-55-30t" secondAttribute="trailing" constant="10" id="2Xj-mg-HuW"/>
+                    <constraint firstItem="cLR-55-30t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Aph-8g-XX5"/>
+                    <constraint firstAttribute="trailing" secondItem="it3-FS-wYG" secondAttribute="trailing" constant="16" id="OEX-aX-EVk"/>
+                    <constraint firstAttribute="bottom" secondItem="it3-FS-wYG" secondAttribute="bottom" constant="9" id="Sq8-Uk-lSH"/>
+                    <constraint firstItem="FFM-gE-kg4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Wmp-Kh-twc"/>
+                    <constraint firstAttribute="bottom" secondItem="FFM-gE-kg4" secondAttribute="bottom" constant="7.5" id="ben-2Q-vSq"/>
+                    <constraint firstItem="cLR-55-30t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="js2-CN-RCy"/>
+                    <constraint firstItem="FFM-gE-kg4" firstAttribute="top" secondItem="cLR-55-30t" secondAttribute="bottom" constant="2" id="pDa-h9-icE"/>
+                    <constraint firstItem="it3-FS-wYG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="teS-Fa-4vK"/>
+                    <constraint firstItem="it3-FS-wYG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FFM-gE-kg4" secondAttribute="trailing" constant="10" id="url-oV-pQk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="emailLabel" destination="FFM-gE-kg4" id="z7j-Ti-gQa"/>
+                <outlet property="usernameLabel" destination="cLR-55-30t" id="jWa-o2-uzg"/>
+                <outlet property="writeMailButton" destination="it3-FS-wYG" id="vce-lg-e7s"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="126.89732142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
+    </resources>
+</document>
