@@ -107,19 +107,13 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    
-    
-    
-    
-
-    
-    
 }
+
+
+
 
 extension UsersViewController: UsersTableViewCellDelegate {
     func didTappedWriteMessageButton(index: Int) {
-        //let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = self.storyboard?.instantiateViewController(identifier: "SendMailViewController") as? SendMailViewController {
             vc.nameTitle = users[index].username
             vc.receiver = users[index].email

@@ -67,7 +67,6 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MailsTableViewCell", for: indexPath) as! MailsTableViewCell
         let currentUser = Auth.auth().currentUser?.email
         if messages[indexPath.row].sender == currentUser {
-            //cell.senderLabel.textColor = UIColor.red
             cell.senderLabel.text = "You"
             
         } else {
@@ -75,7 +74,6 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if messages[indexPath.row].receiver == currentUser {
-            //cell.receiverLabel.textColor = UIColor.red
             cell.receiverLabel.text = "You"
         } else {
             cell.receiverLabel.text = messages[indexPath.row].receiver

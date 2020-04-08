@@ -84,7 +84,6 @@ class SignUpViewController: UIViewController {
         })
     }
     
-    //self.usernameLabel.text = (snapshot.value as! NSDictionary)["username"] as? String
     
 
     
