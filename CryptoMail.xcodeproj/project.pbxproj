@@ -20,7 +20,6 @@
 		2220104F243CE62B0023C851 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2220104E243CE62B0023C851 /* SettingsTableViewController.swift */; };
 		22201053243CF8010023C851 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22201052243CF8010023C851 /* User.swift */; };
 		22201055243CF81D0023C851 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22201054243CF81D0023C851 /* Message.swift */; };
-		22201058243CFB5C0023C851 /* RealmDBOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22201057243CFB5C0023C851 /* RealmDBOperations.swift */; };
 		2220105A243D10C50023C851 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22201059243D10C50023C851 /* UsersViewController.swift */; };
 		223AA285243E10DB00618257 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223AA283243E10DB00618257 /* UsersTableViewCell.swift */; };
 		223AA286243E10DC00618257 /* UsersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223AA284243E10DB00618257 /* UsersTableViewCell.xib */; };
@@ -50,7 +49,6 @@
 		2220104E243CE62B0023C851 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		22201052243CF8010023C851 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22201054243CF81D0023C851 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		22201057243CFB5C0023C851 /* RealmDBOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBOperations.swift; sourceTree = "<group>"; };
 		22201059243D10C50023C851 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		223AA283243E10DB00618257 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		223AA284243E10DB00618257 /* UsersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersTableViewCell.xib; sourceTree = "<group>"; };
@@ -102,13 +100,12 @@
 				22201047243CCB820023C851 /* Controllers */,
 				223AA289243E344800618257 /* Cells */,
 				22201056243CF8260023C851 /* Models */,
+				22201048243CCBAF0023C851 /* AuthService.swift */,
 				22201033243CC3380023C851 /* Main.storyboard */,
 				22201036243CC3480023C851 /* Assets.xcassets */,
 				22201038243CC3480023C851 /* LaunchScreen.storyboard */,
 				2220103B243CC3480023C851 /* Info.plist */,
 				22201043243CC5F20023C851 /* GoogleService-Info.plist */,
-				22201048243CCBAF0023C851 /* AuthService.swift */,
-				22201057243CFB5C0023C851 /* RealmDBOperations.swift */,
 			);
 			path = CryptoMail;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2220102E243CC3380023C851 /* AppDelegate.swift in Sources */,
-				22201058243CFB5C0023C851 /* RealmDBOperations.swift in Sources */,
 				2220104D243CD7A60023C851 /* MailsViewController.swift in Sources */,
 				223AA290243E76FF00618257 /* AllMailsTableViewCell.swift in Sources */,
 				2220105A243D10C50023C851 /* UsersViewController.swift in Sources */,
