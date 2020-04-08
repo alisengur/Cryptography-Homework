@@ -112,29 +112,7 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            if let user = users?[indexPath.row] {
-//                let realm = try! Realm()
-//                try! realm.write {
-//                    realm.delete(user)
-//                }
-//                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-//                let userId = users?[indexPath.row]
-//                removeFromFirebase(index: indexPath)
-//            }
-//        }
-//    }
-//
-//
-//    func removeFromFirebase(index: IndexPath){
-//
-//        guard let uid = Auth.auth().currentUser?.uid else {return}
-//        let dbRef = Database.database().reference()
-//        let ref = dbRef.child("users").child(uid)
-//        ref.removeValue()
-//    }
-    
+
     
     
 }
