@@ -9,5 +9,6 @@ target 'CryptoMail' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'RealmSwift'
+  pod 'CryptoSwift'
 
 end
