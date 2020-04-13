@@ -44,6 +44,7 @@ class UsersViewController: UIViewController {
     }
     
     
+    // fetch the username of users in order
     func reloadData() {
         let realm = try! Realm()
         users = realm.objects(User.self).sorted(byKeyPath: "username", ascending: true)
@@ -52,8 +53,8 @@ class UsersViewController: UIViewController {
     
     
     
+    
     func saveUserToRealm(){
-        
         let dbRef = Database.database().reference()
         dbRef.child("users").observe(.value, with: {
             snapshot in
@@ -66,7 +67,7 @@ class UsersViewController: UIViewController {
                 if let username = username, let email = email {
                     user.username = username
                     user.email = email
-                    user.writeToRealm()
+                    user.writeToRealm() // save users to realm database
                 }
             }
         })
@@ -111,7 +112,7 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
-
+// pass to SendMailViewController when tapped button
 extension UsersViewController: UsersTableViewCellDelegate {
     func didTappedWriteMessageButton(index: Int) {
         if let vc = self.storyboard?.instantiateViewController(identifier: "SendMailViewController") as? SendMailViewController {

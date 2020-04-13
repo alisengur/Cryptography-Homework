@@ -25,6 +25,7 @@ class SendMailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = nameTitle
+        self.messageTextView.isScrollEnabled = false
     }
     
 
@@ -35,10 +36,13 @@ class SendMailViewController: UIViewController {
             let message = Message()
             message.sender = currentUser
             guard let messageText = messageTextView.text, let receiverEmail = receiver else { return }
-            message.message = messageText
+            let encryptedMessage = messageText.aesEncrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            message.message = encryptedMessage!
             message.receiver = receiverEmail
             message.writeToRealm()
+            
         }
+        
 
         let vc = self.storyboard?.instantiateViewController(identifier: "TabBarController") as! UITabBarController
         vc.modalPresentationStyle = .fullScreen
@@ -47,3 +51,7 @@ class SendMailViewController: UIViewController {
     }
     
 }
+
+
+
+

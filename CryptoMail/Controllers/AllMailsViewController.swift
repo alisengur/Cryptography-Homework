@@ -34,16 +34,17 @@ class AllMailsViewController: UIViewController {
     }
     
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
     
+    
     func reloadData() {
         let realm = try! Realm()
         messages = realm.objects(Message.self)
-        
     }
     
 
@@ -51,6 +52,7 @@ class AllMailsViewController: UIViewController {
 
 
 extension AllMailsViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages != nil {
             return messages.count
@@ -62,14 +64,15 @@ extension AllMailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMailsTableViewCell", for: indexPath) as! AllMailsTableViewCell
-        let currentUser = Auth.auth().currentUser?.email
+        let currentUser = Auth.auth().currentUser?.email  // current user email from firebase
+        
         if messages[indexPath.row].sender == currentUser {
             cell.senderLabel.textColor = UIColor.red
             cell.senderLabel.text = "You"
-            
         } else {
             cell.senderLabel.text = messages[indexPath.row].sender
         }
+        
         
         if messages[indexPath.row].receiver == currentUser {
             cell.receiverLabel.textColor = UIColor.red
@@ -78,11 +81,16 @@ extension AllMailsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.receiverLabel.text = messages[indexPath.row].receiver
         }
         
-        cell.messageLabel.text = messages[indexPath.row].message
+        // if the message belong to current user,  decrypt the message.
+        if messages[indexPath.row].sender == currentUser || messages[indexPath.row].receiver == currentUser {
+            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            cell.messageLabel.text = decryptedMessage
+        } else {
+            cell.messageLabel.text = messages[indexPath.row].message
+        }
+
         return cell
     }
-    
-    
     
     
 }
