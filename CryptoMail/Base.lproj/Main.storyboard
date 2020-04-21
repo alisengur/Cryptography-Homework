@@ -473,21 +473,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bno-NM-dZ7">
-                                <rect key="frame" x="35" y="59" width="344" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="bno-NM-dZ7">
+                                <rect key="frame" x="20" y="57" width="374" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="7n3-28-R3j"/>
                                 </constraints>
-                                <attributedString key="attributedText"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUO-cm-R9L">
-                                <rect key="frame" x="299" y="205" width="80" height="30"/>
+                                <rect key="frame" x="20" y="209" width="80" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="HHR-g5-csp"/>
-                                    <constraint firstAttribute="width" constant="80" id="NeG-ZB-BDR"/>
+                                    <constraint firstAttribute="width" constant="80" id="1OU-TY-Irr"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Send"/>
@@ -495,15 +494,30 @@
                                     <action selector="sendButtonDidTapped:" destination="5yu-aa-y1I" eventType="touchUpInside" id="1sf-mK-J3f"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUy-iR-UPf">
+                                <rect key="frame" x="264" y="209" width="130" height="30"/>
+                                <color key="backgroundColor" red="0.82044627569999995" green="0.59148410220000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ety-dL-yu0"/>
+                                    <constraint firstAttribute="width" constant="130" id="ugZ-Kh-lv6"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Send Spam Mail"/>
+                                <connections>
+                                    <action selector="sendSpamMail:" destination="5yu-aa-y1I" eventType="touchUpInside" id="E79-5H-v9z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="bottom" secondItem="TUO-cm-R9L" secondAttribute="bottom" constant="627" id="BoV-DZ-BC9"/>
-                            <constraint firstItem="bno-NM-dZ7" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="35" id="Juh-sS-2X7"/>
-                            <constraint firstItem="TUO-cm-R9L" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="18" id="MbD-Kj-p6b"/>
-                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="bno-NM-dZ7" secondAttribute="trailing" constant="35" id="VTv-HW-BgM"/>
-                            <constraint firstItem="bno-NM-dZ7" firstAttribute="top" secondItem="xJq-Ao-q5d" secondAttribute="top" constant="15" id="lmS-9I-kZv"/>
-                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="TUO-cm-R9L" secondAttribute="trailing" constant="35" id="s9F-Ji-W7L"/>
+                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="ZUy-iR-UPf" secondAttribute="trailing" constant="20" id="2kS-gM-wlw"/>
+                            <constraint firstItem="TUO-cm-R9L" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="24" id="EEl-dy-lJ9"/>
+                            <constraint firstItem="ZUy-iR-UPf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TUO-cm-R9L" secondAttribute="trailing" constant="10" id="Idx-aN-ywS"/>
+                            <constraint firstItem="bno-NM-dZ7" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="20" id="Juh-sS-2X7"/>
+                            <constraint firstItem="TUO-cm-R9L" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="20" id="SnJ-L3-XPp"/>
+                            <constraint firstItem="ZUy-iR-UPf" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="24" id="Tzy-94-ufU"/>
+                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="bno-NM-dZ7" secondAttribute="trailing" constant="20" id="VTv-HW-BgM"/>
+                            <constraint firstItem="bno-NM-dZ7" firstAttribute="top" secondItem="xJq-Ao-q5d" secondAttribute="top" constant="13" id="lmS-9I-kZv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xJq-Ao-q5d"/>
                     </view>
@@ -514,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5C-uD-fJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4628" y="1310"/>
+            <point key="canvasLocation" x="4627.536231884058" y="1309.8214285714284"/>
         </scene>
         <!--All Users-->
         <scene sceneID="MSL-cI-MSu">
@@ -539,7 +553,7 @@
         <scene sceneID="ok5-JF-kDR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z6A-vZ-7Nz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All Mails" image="allMail-1" id="8je-wa-H7b"/>
+                    <tabBarItem key="tabBarItem" title="All Mails" image="mail-1" id="8je-wa-H7b"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="amo-AF-LI4">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -558,7 +572,7 @@
         <scene sceneID="nJR-TR-ecn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hgm-Hp-Xud" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Mails" image="mail-1" id="caj-Y5-UyF"/>
+                    <tabBarItem key="tabBarItem" title="My Mails" image="mail" id="caj-Y5-UyF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jz0-P2-CoF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -575,9 +589,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="allMail-1" width="32" height="32"/>
         <image name="group-1" width="32" height="32"/>
-        <image name="mail-1" width="32" height="32"/>
+        <image name="mail" width="32" height="32"/>
+        <image name="mail-1" width="31" height="31"/>
         <image name="settings-1" width="24" height="24"/>
     </resources>
 </document>
