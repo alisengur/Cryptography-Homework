@@ -60,13 +60,13 @@ class SendMailViewController: UIViewController {
 
         for _ in 0..<20 {
             let intRandNum: Int = (Int)(random.random() * 100)
+            print(intRandNum)
             self.spamMessageArray.append(words[intRandNum])
         }
         let randomMailText = spamMessageArray.joined(separator: " ")
         print(randomMailText)
         guard let receiverEmail = receiver else { return }
         sendEncryptedMail(messageText: randomMailText, receiver: receiverEmail)
-        
     }
     
     
@@ -77,6 +77,9 @@ class SendMailViewController: UIViewController {
             message.sender = currentUser
             let encryptedMessage = messageText.aesEncrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
             message.message = encryptedMessage!
+            let hashMail = messageText.sha256()
+            // hash the mail and save to realm
+            message.hashMessage = hashMail
             message.receiver = receiver
             message.writeToRealm()
             

@@ -17,7 +17,8 @@ class MailsViewController: UIViewController {
     
 
     var messages: Results<Message>!
-
+    let currentUser = Auth.auth().currentUser?.email
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,10 @@ class MailsViewController: UIViewController {
 
 
 
+
+//MARK: -TableView functions
 extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages != nil {
             return messages.count
@@ -68,7 +72,7 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MailsTableViewCell", for: indexPath) as! MailsTableViewCell
-        let currentUser = Auth.auth().currentUser?.email  // current user's email from firebase
+         // current user's email from firebase
         if messages[indexPath.row].sender == currentUser {  /// if sender is current user
             cell.senderLabel.text = "You"
             
@@ -85,8 +89,43 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         // decrypted message
         let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
         cell.messageLabel.text = decryptedMessage
+        
+        if controlIntegrityOfMessages(message: decryptedMessage!, hashMail: messages[indexPath.row].hashMessage) {
+            cell.cautionImage.isHidden = true
+        } else {
+            cell.cautionImage.isHidden = false
+        }
         return cell
     }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let vc = mainStoryboard.instantiateViewController(identifier: "DetailMailViewController") as? DetailMailViewController {
+            if messages[indexPath.row].sender == currentUser {
+                vc.mailTitle = "From 'You' to '\(messages[indexPath.row].receiver)'"
+            }
+            if messages[indexPath.row].receiver == currentUser {
+                vc.mailTitle = "From '\(messages[indexPath.row].sender)' to 'You'"
+            }
+            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            vc.mailText = decryptedMessage
+            
+            // Check if the mail has changed
+            if controlIntegrityOfMessages(message: decryptedMessage!, hashMail: messages[indexPath.row].hashMessage) {
+                vc.mailDescription = "This email is completely secure"
+                vc.mailDescriptionLabel.backgroundColor = UIColor(red: 125/255, green: 200/255, blue: 134/255, alpha: 1.0)
+            } else {
+                vc.mailDescription = "This email may have been changed"
+                vc.mailDescriptionLabel.backgroundColor = UIColor(red: 255/255, green: 121/255, blue: 121/255, alpha: 1.0)
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
     
     
     // swipe to delete from table view and realm database
@@ -103,6 +142,16 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         }
     
     
+
     
     
+    //MARK: -This function checks that the mail and hashed mail are same.
+    func controlIntegrityOfMessages(message: String, hashMail: String) -> Bool {
+        let hashedMessage = message.sha256()
+        if hashedMessage == hashMail {
+            return true
+        } else {
+            return false
+        }
+    }
 }

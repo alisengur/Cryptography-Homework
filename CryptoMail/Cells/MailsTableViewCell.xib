@@ -41,22 +41,31 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irk-Tp-Sdt">
-                        <rect key="frame" x="16" y="53" width="288" height="15"/>
+                        <rect key="frame" x="16" y="53" width="262" height="15"/>
                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caution" translatesAutoresizingMaskIntoConstraints="NO" id="YMH-q1-eZk">
+                        <rect key="frame" x="284" y="50.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="B2B-89-uEF"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="irk-Tp-Sdt" firstAttribute="top" secondItem="DlK-1d-8Vh" secondAttribute="bottom" constant="14" id="4PJ-8j-ivT"/>
                     <constraint firstAttribute="trailing" secondItem="DlK-1d-8Vh" secondAttribute="trailing" constant="16" id="5cZ-f1-bHt"/>
                     <constraint firstItem="bWk-WY-Ut3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="8XY-Gv-MbW"/>
                     <constraint firstItem="w1R-U0-gnf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="9SG-6u-bAW"/>
+                    <constraint firstItem="YMH-q1-eZk" firstAttribute="centerY" secondItem="irk-Tp-Sdt" secondAttribute="centerY" id="Cg0-Mn-kgT"/>
                     <constraint firstItem="DlK-1d-8Vh" firstAttribute="top" secondItem="P8S-jr-7Zt" secondAttribute="bottom" id="KFq-kv-UHs"/>
+                    <constraint firstAttribute="trailing" secondItem="YMH-q1-eZk" secondAttribute="trailing" constant="16" id="L53-Rv-G2U"/>
                     <constraint firstItem="bWk-WY-Ut3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="NOU-gH-FXj"/>
                     <constraint firstItem="irk-Tp-Sdt" firstAttribute="top" secondItem="w1R-U0-gnf" secondAttribute="bottom" constant="14" id="QqP-K1-Xca"/>
-                    <constraint firstAttribute="trailing" secondItem="irk-Tp-Sdt" secondAttribute="trailing" constant="16" id="SGd-Ns-ufa"/>
+                    <constraint firstAttribute="trailing" secondItem="irk-Tp-Sdt" secondAttribute="trailing" constant="42" id="SGd-Ns-ufa"/>
                     <constraint firstItem="P8S-jr-7Zt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="asa-3A-SAf"/>
+                    <constraint firstItem="YMH-q1-eZk" firstAttribute="leading" secondItem="irk-Tp-Sdt" secondAttribute="trailing" constant="6" id="dHh-eJ-vJP"/>
                     <constraint firstItem="w1R-U0-gnf" firstAttribute="top" secondItem="bWk-WY-Ut3" secondAttribute="bottom" id="eqJ-Uh-6HY"/>
                     <constraint firstAttribute="bottom" secondItem="irk-Tp-Sdt" secondAttribute="bottom" constant="11" id="fuY-c3-hFZ"/>
                     <constraint firstItem="bWk-WY-Ut3" firstAttribute="baseline" secondItem="P8S-jr-7Zt" secondAttribute="firstBaseline" id="jPx-tp-Aoc"/>
@@ -67,6 +76,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cautionImage" destination="YMH-q1-eZk" id="giZ-wW-SPT"/>
                 <outlet property="messageLabel" destination="irk-Tp-Sdt" id="tqt-9A-2oD"/>
                 <outlet property="receiverLabel" destination="DlK-1d-8Vh" id="liz-LU-yx8"/>
                 <outlet property="senderLabel" destination="w1R-U0-gnf" id="7xw-j9-R6Y"/>
@@ -74,4 +84,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="118.19196428571428"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="caution" width="32" height="32"/>
+    </resources>
 </document>

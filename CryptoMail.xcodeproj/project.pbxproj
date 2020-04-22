@@ -31,6 +31,7 @@
 		223AA293243E79BF00618257 /* AllMailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223AA292243E79BF00618257 /* AllMailsViewController.swift */; };
 		227827452444E081009FBB7C /* AESEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227827442444E081009FBB7C /* AESEncryption.swift */; };
 		2278C796244F829100E413C3 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278C795244F829100E413C3 /* RandomNumberGenerator.swift */; };
+		22CC11AC2450D5920092E4C7 /* DetailMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */; };
 		DEA4709D61016328DDD86AC6 /* Pods_CryptoMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C83BEC3EB12ECBB87A9C0C /* Pods_CryptoMail.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		223AA292243E79BF00618257 /* AllMailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMailsViewController.swift; sourceTree = "<group>"; };
 		227827442444E081009FBB7C /* AESEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESEncryption.swift; sourceTree = "<group>"; };
 		2278C795244F829100E413C3 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
+		22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMailViewController.swift; sourceTree = "<group>"; };
 		27C83BEC3EB12ECBB87A9C0C /* Pods_CryptoMail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoMail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC947CA0A8CA6893D6106DD7 /* Pods-CryptoMail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoMail.release.xcconfig"; path = "Target Support Files/Pods-CryptoMail/Pods-CryptoMail.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				22201059243D10C50023C851 /* UsersViewController.swift */,
 				2220104E243CE62B0023C851 /* SettingsTableViewController.swift */,
 				223AA287243E14E300618257 /* SendMailViewController.swift */,
+				22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				2220102E243CC3380023C851 /* AppDelegate.swift in Sources */,
 				2220104D243CD7A60023C851 /* MailsViewController.swift in Sources */,
+				22CC11AC2450D5920092E4C7 /* DetailMailViewController.swift in Sources */,
 				227827452444E081009FBB7C /* AESEncryption.swift in Sources */,
 				223AA290243E76FF00618257 /* AllMailsTableViewCell.swift in Sources */,
 				2220105A243D10C50023C851 /* UsersViewController.swift in Sources */,
