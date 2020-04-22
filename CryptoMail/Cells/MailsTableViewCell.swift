@@ -20,6 +20,7 @@ class MailsTableViewCell: UITableViewCell {
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var receiverLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var cautionImage: UIImageView!
     
     var delegate: MailsTableViewCellDelegate?
     

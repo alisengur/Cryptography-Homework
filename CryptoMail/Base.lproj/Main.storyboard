@@ -287,6 +287,66 @@
             </objects>
             <point key="canvasLocation" x="3051" y="-135"/>
         </scene>
+        <!--Detail Mail View Controller-->
+        <scene sceneID="3cc-Ur-dlF">
+            <objects>
+                <viewController storyboardIdentifier="DetailMailViewController" id="qH2-MY-aYC" customClass="DetailMailViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QHN-cA-m6m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Beh-Rj-Mah">
+                                <rect key="frame" x="20" y="85" width="374" height="137"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="137" id="hXK-Dw-4B8"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzc-kx-fsD">
+                                <rect key="frame" x="20" y="56" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-Fh-qV4">
+                                <rect key="frame" x="20" y="238" width="374" height="40"/>
+                                <color key="backgroundColor" white="0.91000000000000003" alpha="0.84705882352941175" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3Nn-TJ-Fui"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Beh-Rj-Mah" firstAttribute="leading" secondItem="DFg-bB-2NP" secondAttribute="leading" constant="20" id="1zE-7M-v96"/>
+                            <constraint firstItem="Uzc-kx-fsD" firstAttribute="leading" secondItem="DFg-bB-2NP" secondAttribute="leading" constant="20" id="CUN-Gg-fcX"/>
+                            <constraint firstItem="Beh-Rj-Mah" firstAttribute="leading" secondItem="ybN-Fh-qV4" secondAttribute="leading" id="DhP-D4-aSI"/>
+                            <constraint firstItem="DFg-bB-2NP" firstAttribute="trailing" secondItem="Beh-Rj-Mah" secondAttribute="trailing" constant="20" id="Lkt-Ya-4hO"/>
+                            <constraint firstItem="DFg-bB-2NP" firstAttribute="trailing" secondItem="Uzc-kx-fsD" secondAttribute="trailing" constant="20" id="Mya-Jn-G9E"/>
+                            <constraint firstItem="DFg-bB-2NP" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ybN-Fh-qV4" secondAttribute="bottom" constant="10" id="XDL-wm-jdj"/>
+                            <constraint firstItem="ybN-Fh-qV4" firstAttribute="top" secondItem="Beh-Rj-Mah" secondAttribute="bottom" constant="16" id="ZVa-7h-Mxc"/>
+                            <constraint firstItem="Beh-Rj-Mah" firstAttribute="trailing" secondItem="ybN-Fh-qV4" secondAttribute="trailing" id="Zo0-iM-ay4"/>
+                            <constraint firstItem="Beh-Rj-Mah" firstAttribute="top" secondItem="Uzc-kx-fsD" secondAttribute="bottom" constant="8" id="kJo-cK-0IR"/>
+                            <constraint firstItem="Uzc-kx-fsD" firstAttribute="top" secondItem="DFg-bB-2NP" secondAttribute="top" constant="12" id="zet-pa-lQk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DFg-bB-2NP"/>
+                    </view>
+                    <connections>
+                        <outlet property="mailDescriptionLabel" destination="ybN-Fh-qV4" id="pW4-Za-gcf"/>
+                        <outlet property="mailTextView" destination="Beh-Rj-Mah" id="QxZ-pn-OEp"/>
+                        <outlet property="mailTitleLabel" destination="Uzc-kx-fsD" id="abS-vz-SF3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F3r-7R-BN6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3847.826086956522" y="-135.26785714285714"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FAq-Sk-6Q5">
             <objects>
@@ -508,7 +568,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="ZUy-iR-UPf" secondAttribute="trailing" constant="20" id="2kS-gM-wlw"/>
                             <constraint firstItem="TUO-cm-R9L" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="24" id="EEl-dy-lJ9"/>
