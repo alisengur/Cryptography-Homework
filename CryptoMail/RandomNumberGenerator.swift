@@ -12,10 +12,11 @@ import Foundation
 class LinearCongruentialGenerator {  // Linear Congruential Generator method used for generate random number.
     
     //MARK:  formula: Rn+1 = (Rn * a + c) / m
-    var lastRandomNumber: Double = 28.0
-    let m = 168225.0
-    let a = 8136.0
-    let c = 5725.0
+    var lastRandomNumber = Double.random(in: 1...100) // Seed number.
+    //The sequence depends on the seed. If seed number isn't a random, next sequence may not be different.
+    let m = 25371.0
+    let a = 965.0
+    let c = 9712.0
     
     func random() -> Double {
         lastRandomNumber = ((lastRandomNumber * a + c).truncatingRemainder(dividingBy: m))
