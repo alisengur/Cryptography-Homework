@@ -65,21 +65,23 @@ extension AllMailsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMailsTableViewCell", for: indexPath) as! AllMailsTableViewCell
         let currentUser = Auth.auth().currentUser?.email  // current user email from firebase
-        
-        if messages[indexPath.row].sender == currentUser {
-            cell.senderLabel.textColor = UIColor.red
-            cell.senderLabel.text = "You"
-        } else {
-            cell.senderLabel.text = messages[indexPath.row].sender
-        }
-        
-        
-        if messages[indexPath.row].receiver == currentUser {
-            cell.receiverLabel.textColor = UIColor.red
-            cell.receiverLabel.text = "You"
-        } else {
-            cell.receiverLabel.text = messages[indexPath.row].receiver
-        }
+//
+//        if messages[indexPath.row].sender == currentUser {
+//            cell.senderLabel.textColor = UIColor.red
+//            cell.senderLabel.text = "You"
+//        } else {
+//            cell.senderLabel.text = messages[indexPath.row].sender
+//        }
+//
+//
+//        if messages[indexPath.row].receiver == currentUser {
+//            cell.receiverLabel.textColor = UIColor.red
+//            cell.receiverLabel.text = "You"
+//        } else {
+//            cell.receiverLabel.text = messages[indexPath.row].receiver
+//        }
+        cell.senderLabel.text = messages[indexPath.row].sender
+        cell.receiverLabel.text = messages[indexPath.row].receiver
         
         // if the message belong to current user,  decrypt the message.
         if messages[indexPath.row].sender == currentUser || messages[indexPath.row].receiver == currentUser {

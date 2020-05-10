@@ -25,7 +25,6 @@ class UsersViewController: UIViewController {
         setTableView()
         self.saveUserToRealm()
         self.reloadData()
-        print(users!)
     }
     
     

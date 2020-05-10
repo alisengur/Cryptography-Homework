@@ -17,6 +17,7 @@ protocol MailsTableViewCellDelegate {
 class MailsTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var receiverLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!

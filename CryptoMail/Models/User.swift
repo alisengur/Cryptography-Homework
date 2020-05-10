@@ -26,7 +26,6 @@ extension User {
         let realm = try! Realm()
         try! realm.write {
             realm.add(self, update: .all)
-            print("Realm is located at:", realm.configuration.fileURL!)
         }
     }
 }
