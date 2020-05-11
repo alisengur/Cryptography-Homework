@@ -1,24 +1,22 @@
 //
-//  MailsViewController.swift
-//  CryptoMail
+//  SpamMailViewController.swift
+//  
 //
-//  Created by Ali Şengür on 7.04.2020.
-//  Copyright © 2020 Ali Şengür. All rights reserved.
+//  Created by Ali Şengür on 10.05.2020.
 //
 
 import UIKit
 import RealmSwift
 import FirebaseAuth
 
-
-class MailsViewController: UIViewController {
+class SpamMailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-
     var messages: Results<Message>!
     let currentUser = Auth.auth().currentUser?.email
-    
+    var concatenatedMail: [String] = []
+    //let mailOne: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +24,11 @@ class MailsViewController: UIViewController {
         self.reloadData()
     }
     
-
     fileprivate func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        let cellNib = UINib(nibName: "MailsTableViewCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "MailsTableViewCell")
+        let cellNib = UINib(nibName: "SpamMailsTableViewCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "SpamMailsTableViewCell")
     }
     
     
@@ -41,17 +38,15 @@ class MailsViewController: UIViewController {
     }
     
     
-    
     func reloadData() {
         let realm = try! Realm()
-        // fetch the current user messages
-        let predicate = NSPredicate(format: "spam = false")
+        let predicate = NSPredicate(format: "spam = true")
         messages = realm.objects(Message.self).filter(predicate)
         
     }
     
     
-    @IBAction func navigateToSendMail(_ sender: Any) {
+    @IBAction func navigateToSendSpam(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(identifier: "SendSpamMailViewController") as? SendSpamMailViewController {
             self.navigationController?.pushViewController(vc, animated: true)
@@ -59,15 +54,49 @@ class MailsViewController: UIViewController {
     }
     
     
+    @IBAction func navigateToSpamAnalysis(_ sender: Any) {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let vc = mainStoryBoard.instantiateViewController(withIdentifier: "SpamAnalysisViewController") as? SpamAnalysisViewController {
+            vc.concatenatedText = self.sendConcatMailToSpamAnalysis()
+            vc.mailOne = messages[0].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            vc.mailTwo = messages[1].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            vc.mailThree = messages[2].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            vc.mailFour = messages[3].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            vc.mailFive = messages[4].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            
+            vc.hashOne = messages[0].hashMessage
+            vc.hashTwo = messages[1].hashMessage
+            vc.hashThree = messages[2].hashMessage
+            vc.hashFour = messages[3].hashMessage
+            vc.hashFive = messages[4].hashMessage
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
+    func sendConcatMailToSpamAnalysis() -> String {
+        concatenatedMail.removeAll()
+        for i in 0..<messages.count {
+            if let decryptedMessage = messages[i].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678") {
+                self.concatenateMail(mail: decryptedMessage)
+            }
+        }
+        let text = concatenatedMail.map { String($0) }
+        .joined(separator: " ")
+        return text
+    }
+    
+    func concatenateMail(mail: String){
+        let words = mail.components(separatedBy: .whitespaces)
+        for word in words {
+            self.concatenatedMail.append(word)
+        }
+    }
+    
     
 }
 
-
-
-
-//MARK: -TableView functions
-extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
-    
+extension SpamMailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages != nil {
             return messages.count
@@ -76,15 +105,12 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MailsTableViewCell", for: indexPath) as! MailsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SpamMailsTableViewCell", for: indexPath) as! SpamMailsTableViewCell
         cell.descriptionLabel.text = "This mail encrypted with AES256"
         cell.senderLabel.text = messages[indexPath.row].sender
         cell.receiverLabel.text = messages[indexPath.row].receiver
         
-        // decrypted message
         let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
         cell.messageLabel.text = decryptedMessage
         
@@ -95,7 +121,6 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return cell
     }
-    
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -125,9 +150,9 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         }
-    
-    
 
+    
+    
     
     
     //MARK: -This function checks that the mail and hashed mail are same.
@@ -139,4 +164,15 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
             return false
         }
     }
+    
+    
+    
 }
+
+
+
+    
+    
+    
+    
+

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/alisengur/Repository/CryptoMail/CryptoMail/Controllers/SpamMailViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:CryptoMail.xcodeproj">
    </FileRef>
    <FileRef

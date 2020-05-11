@@ -1,8 +1,8 @@
 //
-//  UsersViewController.swift
+//  SendSpamMailViewController.swift
 //  CryptoMail
 //
-//  Created by Ali Şengür on 7.04.2020.
+//  Created by Ali Şengür on 10.05.2020.
 //  Copyright © 2020 Ali Şengür. All rights reserved.
 //
 
@@ -11,11 +11,9 @@ import RealmSwift
 import FirebaseAuth
 import FirebaseDatabase
 
-
-class UsersViewController: UIViewController {
+class SendSpamMailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
     
     var users: Results<User>!
     
@@ -23,18 +21,16 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
-        self.saveUserToRealm()
         self.reloadData()
     }
     
-    
     fileprivate func setTableView() {
-        let tableViewCellNib = UINib(nibName: "UsersTableViewCell", bundle: nil)
+        self.navigationItem.title = "Users"
+        let tableViewCellNib = UINib(nibName: "SendSpamTableViewCell", bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(tableViewCellNib, forCellReuseIdentifier: "UsersTableViewCell")
+        tableView.register(tableViewCellNib, forCellReuseIdentifier: "SendSpamTableViewCell")
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,15 +38,12 @@ class UsersViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     // fetch the username of users in order
     func reloadData() {
         let realm = try! Realm()
         users = realm.objects(User.self).sorted(byKeyPath: "username", ascending: true)
         self.tableView.reloadData()
     }
-    
-    
     
     
     func saveUserToRealm(){
@@ -70,24 +63,12 @@ class UsersViewController: UIViewController {
                 }
             }
         })
-        
-    }
-    
-    
-    
-
-    @IBAction func settingsButtonDidTapped(_ sender: Any) {
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let vc = mainStoryboard.instantiateViewController(identifier: "SettingsTableViewController") as? SettingsTableViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
     }
 }
 
 
-extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
+extension SendSpamMailViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if users != nil {
             return users!.count
@@ -95,9 +76,11 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UsersTableViewCell", for: indexPath) as! UsersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SendSpamTableViewCell", for: indexPath) as! SendSpamTableViewCell
+        cell.delegate = self
+        cell.index = indexPath
         cell.usernameLabel?.text = users![indexPath.row].username
         cell.emailLabel?.text = users![indexPath.row].email
         
@@ -105,4 +88,24 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+
+    
 }
+
+
+
+extension SendSpamMailViewController: SendSpamTableViewCellDelegate {
+    func didTappedWriteMessageButton(index: Int) {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "SendMailViewController") as? SendMailViewController {
+        vc.nameTitle = users[index].username
+        vc.receiver = users[index].email
+        self.navigationController?.pushViewController(vc, animated: true)
+
+        }
+    }
+}
+    
+    
+    
+    
+

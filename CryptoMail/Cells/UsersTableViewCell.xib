@@ -28,37 +28,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="it3-FS-wYG">
-                        <rect key="frame" x="283.5" y="9" width="20.5" height="33"/>
-                        <state key="normal" image="square.and.pencil" catalog="system"/>
-                        <connections>
-                            <action selector="writeMessage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hXI-nU-7oE"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="it3-FS-wYG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cLR-55-30t" secondAttribute="trailing" constant="10" id="2Xj-mg-HuW"/>
                     <constraint firstItem="cLR-55-30t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Aph-8g-XX5"/>
-                    <constraint firstAttribute="trailing" secondItem="it3-FS-wYG" secondAttribute="trailing" constant="16" id="OEX-aX-EVk"/>
-                    <constraint firstAttribute="bottom" secondItem="it3-FS-wYG" secondAttribute="bottom" constant="9" id="Sq8-Uk-lSH"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FFM-gE-kg4" secondAttribute="trailing" constant="10" id="FdJ-Pl-O9q"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cLR-55-30t" secondAttribute="trailing" constant="10" id="Ibd-be-SIq"/>
                     <constraint firstItem="FFM-gE-kg4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Wmp-Kh-twc"/>
                     <constraint firstAttribute="bottom" secondItem="FFM-gE-kg4" secondAttribute="bottom" constant="7.5" id="ben-2Q-vSq"/>
                     <constraint firstItem="cLR-55-30t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="js2-CN-RCy"/>
                     <constraint firstItem="FFM-gE-kg4" firstAttribute="top" secondItem="cLR-55-30t" secondAttribute="bottom" constant="2" id="pDa-h9-icE"/>
-                    <constraint firstItem="it3-FS-wYG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="teS-Fa-4vK"/>
-                    <constraint firstItem="it3-FS-wYG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FFM-gE-kg4" secondAttribute="trailing" constant="10" id="url-oV-pQk"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="emailLabel" destination="FFM-gE-kg4" id="z7j-Ti-gQa"/>
                 <outlet property="usernameLabel" destination="cLR-55-30t" id="jWa-o2-uzg"/>
-                <outlet property="writeMailButton" destination="it3-FS-wYG" id="vce-lg-e7s"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="126.89732142857142"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
-    </resources>
 </document>

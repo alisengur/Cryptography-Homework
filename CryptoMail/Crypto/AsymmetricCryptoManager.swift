@@ -90,7 +90,7 @@ class AsymmetricCryptoManager: NSObject {
     
     
     
-    func getPublicKeyData() -> Data? {
+    func getPublicKeyData() -> Data? {  // fetch public key from keychain
         let parameters = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
@@ -105,7 +105,7 @@ class AsymmetricCryptoManager: NSObject {
         } else { return nil }
     }
     
-    func getPublicKeyReference() -> SecKey? {
+    func getPublicKeyReference() -> SecKey? {  // fetch private key from keychain
         let parameters = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyType as String: kSecAttrKeyTypeRSA,

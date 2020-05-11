@@ -34,6 +34,7 @@ class DetailMailViewController: UIViewController {
         hashMail.delegate = self
         self.mailDescriptionLabel.layer.cornerRadius = 5
         self.generateHashButton.layer.cornerRadius = 5
+        self.mailDescriptionLabel.layer.cornerRadius = 5
         senderTitleLabel.text = self.senderTitle
         receiverTitleLabel.text = self.receiverTitle
         mailTextView.text = self.mailText
@@ -48,7 +49,6 @@ class DetailMailViewController: UIViewController {
         self.hashMail.isScrollEnabled = false
         //textViewDidChange(hashMail)
         self.mailDescriptionLabel.isHidden = true
-        
     }
     
     @IBAction func generateHashOfMail(_ sender: Any) {
@@ -62,7 +62,7 @@ class DetailMailViewController: UIViewController {
             self.mailDescriptionLabel.backgroundColor = UIColor(red: 125/255, green: 200/255, blue: 134/255, alpha: 1.0)
             self.mailDescriptionLabel.isHidden = false
         } else {
-            self.mailDescriptionLabel.text = "This mail may have been changed"
+            self.mailDescriptionLabel.text = "This mail have been changed or corrupted"
             self.mailDescriptionLabel.backgroundColor = UIColor(red: 255/255, green: 121/255, blue: 121/255, alpha: 1.0)
             self.mailDescriptionLabel.isHidden = false
         }

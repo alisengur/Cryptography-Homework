@@ -1,18 +1,21 @@
 //
-//  AllMailsTableViewCell.swift
+//  SpamMailsTableViewCell.swift
 //  CryptoMail
 //
-//  Created by Ali Şengür on 9.04.2020.
+//  Created by Ali Şengür on 10.05.2020.
 //  Copyright © 2020 Ali Şengür. All rights reserved.
 //
 
 import UIKit
 
-class AllMailsTableViewCell: UITableViewCell {
+class SpamMailsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var receiverLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var cautionImage: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

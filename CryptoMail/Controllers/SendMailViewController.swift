@@ -17,6 +17,7 @@ class SendMailViewController: UIViewController {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var corruptSwitch: UISwitch!
+    @IBOutlet weak var sendSpamButton: UIButton!
     
     
     
@@ -39,6 +40,7 @@ class SendMailViewController: UIViewController {
         messageTextViewDidChange()
         corruptSwitch.setOn(false, animated: true)
         self.switchState = false
+        self.sendSpamButton.isEnabled = false
     }
     
 
@@ -66,7 +68,7 @@ class SendMailViewController: UIViewController {
         }
         let randomMailText = spamMessageArray.joined(separator: " ")
         self.messageTextView.text = randomMailText
-
+        self.sendSpamButton.isEnabled = true
     }
     
     
@@ -99,6 +101,7 @@ class SendMailViewController: UIViewController {
             
             if switchState == false {  // If switch is not selected
                 message.message = encrypt(messageData: messageText)! /// save encrypted message to realm
+                message.spam = false /// This mail is not spam
                 let hashMail = encrypt(messageData: messageText)!.sha256()  /// hash encrypted message and save to realm
                 message.hashMessage = hashMail
                 message.writeToRealm()
@@ -106,18 +109,52 @@ class SendMailViewController: UIViewController {
                 let newMessage = messageText
                 let corruptedMessage = String(newMessage.dropLast()) /// Corrupt the message(remove the last character for test scenario)
                 message.message = encrypt(messageData: corruptedMessage)!
+                message.spam = false /// This mail is not spam
                 let hashMail = encrypt(messageData: messageText)!.sha256()
                 // hash the mail and save to realm
                 message.hashMessage = hashMail
                 message.writeToRealm()
             }
         }
-        let vc = self.storyboard?.instantiateViewController(identifier: "TabBarController") as! UITabBarController
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "MailsViewController") as? MailsViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
+    
+    @IBAction func sendSpamMail(_ sender: Any) {
+        guard let messageText = messageTextView.text, let receiverEmail = receiver else { return }
+        if let currentUser = Auth.auth().currentUser?.email {
+            let message = Message()
+            message.sender = currentUser
+            message.receiver = receiverEmail
+            
+            if switchState == false {  // If switch is not selected
+                message.message = encrypt(messageData: messageText)! /// save encrypted message to realm
+                message.spam = true /// This mail is spam
+                let hashMail = encrypt(messageData: messageText)!.sha256()  /// hash encrypted message and save to realm
+                message.hashMessage = hashMail
+                message.writeToRealm()
+            } else {  // If switch is selected
+                let newMessage = messageText
+                let corruptedMessage = String(newMessage.dropLast()) /// Corrupt the message(remove the last character for test scenario)
+                message.message = encrypt(messageData: corruptedMessage)!
+                message.spam = true /// This mail is spam
+                let hashMail = encrypt(messageData: messageText)!.sha256()
+                // hash the mail and save to realm
+                message.hashMessage = hashMail
+                message.writeToRealm()
+            }
+        }
+
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SpamMailViewController") as? SpamMailViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
+
+
 
 
 

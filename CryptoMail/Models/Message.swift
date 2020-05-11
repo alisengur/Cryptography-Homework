@@ -14,6 +14,7 @@ class Message: Object {
     
     @objc dynamic var sender = ""
     @objc dynamic var message = ""
+    @objc dynamic var spam = false
     @objc dynamic var hashMessage = ""
     @objc dynamic var receiver = ""
     
