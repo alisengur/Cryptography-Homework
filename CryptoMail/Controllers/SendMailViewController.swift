@@ -12,21 +12,52 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
+enum SendMailVCMode {
+    case aesMail
+    case rsaMail
+    case spamMail
+}
+
+
+
 class SendMailViewController: UIViewController {
 
     @IBOutlet weak var messageTextView: UITextView!
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var keyPairLabel: UILabel!
+    @IBOutlet weak var keyPairButton: UIButton!
+    @IBOutlet weak var sendAESButton: UIButton!
+    @IBOutlet weak var sendRSAButton: UIButton!
+    @IBOutlet weak var generateSpamButton: UIButton!
+    @IBOutlet weak var signButton: UIButton!
+    @IBOutlet weak var verifyButton: UIButton!
     @IBOutlet weak var corruptSwitch: UISwitch!
     @IBOutlet weak var sendSpamButton: UIButton!
     
     
     
-    
+    var pageMode: SendMailVCMode = .aesMail
     var nameTitle: String?
     var receiver: String?
     var switchState: Bool?
     var spamMessageArray: [String] = []
     var random = LinearCongruentialGenerator()
+    
+    
+    var tempRSAEncrypted: String?
+    
+    
+    var keyPairExists = AsymmetricCryptoManager.sharedInstance.keyPairExists() {
+        didSet {
+            if keyPairExists {
+                keyPairLabel.text = "A valid keypair is present"
+                keyPairButton.setTitle("Delete keypair", for: UIControl.State())
+            } else {
+                keyPairLabel.text = "No key pair present"
+                keyPairButton.setTitle("Generate keypair", for: UIControl.State())
+            }
+        }
+    }
+    
     
         
 
@@ -36,11 +67,48 @@ class SendMailViewController: UIViewController {
         self.navigationItem.title = nameTitle
         self.messageTextView.isScrollEnabled = false
         textViewDidChange(messageTextView)
-        self.sendButton.isEnabled = false
-        messageTextViewDidChange()
+        self.setPageMode()
+        self.sendAESButton.isEnabled = false
+        //messageTextViewDidChange()
         corruptSwitch.setOn(false, animated: true)
         self.switchState = false
         self.sendSpamButton.isEnabled = false
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.keyPairExists = AsymmetricCryptoManager.sharedInstance.keyPairExists()
+    }
+    
+    
+    
+    fileprivate func setPageMode() {
+        if self.pageMode == .aesMail {
+            messageTextView.text = "Write something.."
+            messageTextView.textColor = UIColor.lightGray
+            messageTextView.selectedTextRange = messageTextView.textRange(from: messageTextView.beginningOfDocument, to: messageTextView.beginningOfDocument)
+            self.keyPairButton.isEnabled = false
+            self.generateSpamButton.isEnabled = false
+            self.signButton.isEnabled = false
+            self.verifyButton.isEnabled = false
+            self.sendRSAButton.isEnabled = false
+            self.sendSpamButton.isEnabled = false
+        } else if self.pageMode == .rsaMail {
+            messageTextView.text = "Write something.."
+            messageTextView.textColor = UIColor.lightGray
+            messageTextView.selectedTextRange = messageTextView.textRange(from: messageTextView.beginningOfDocument, to: messageTextView.beginningOfDocument)
+            self.generateSpamButton.isEnabled = false
+            self.sendAESButton.isEnabled = false
+            self.sendSpamButton.isEnabled = false
+        } else {
+            self.keyPairButton.isEnabled = false
+            self.signButton.isEnabled = false
+            self.verifyButton.isEnabled = false
+            self.sendAESButton.isEnabled = false
+            self.sendRSAButton.isEnabled = false
+        }
     }
     
 
@@ -48,6 +116,30 @@ class SendMailViewController: UIViewController {
     func encrypt(messageData: String) -> String? {
         let encryptedMessage = messageData.aesEncrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
         return encryptedMessage
+    }
+    
+    
+    @IBAction func generateKeypair(_ sender: Any) {
+        self.view.isUserInteractionEnabled = false
+        if keyPairExists { // delete current key pair
+            AsymmetricCryptoManager.sharedInstance.deleteSecureKeyPair({ (success) -> Void in
+                if success {
+                    print("Keypair successfully deleted")
+                    self.keyPairExists = false
+                } else {
+                    print("Error deleting keypair.") }
+                self.view.isUserInteractionEnabled = true
+            })
+        } else {  // generate keypair
+            AsymmetricCryptoManager.sharedInstance.createSecureKeyPair({ (success, error) -> Void in
+               if success {
+                   print("RSA-2048 keypair successfully generated.")
+                   self.keyPairExists = true
+               } else {
+                print("An error happened while generating a keypair") }
+               self.view.isUserInteractionEnabled = true
+           })
+        }
     }
     
     
@@ -72,6 +164,7 @@ class SendMailViewController: UIViewController {
     }
     
     
+    
     @IBAction func sign(_ sender: Any) {
     }
     
@@ -91,7 +184,7 @@ class SendMailViewController: UIViewController {
     
     
     
-    @IBAction func sendButtonDidTapped(_ sender: Any) {
+    @IBAction func sendAESButtonDidTapped(_ sender: Any) {
         guard let messageText = messageTextView.text, let receiverEmail = receiver else { return }
         print("Message text: \(messageText)")
         if let currentUser = Auth.auth().currentUser?.email {
@@ -101,7 +194,9 @@ class SendMailViewController: UIViewController {
             
             if switchState == false {  // If switch is not selected
                 message.message = encrypt(messageData: messageText)! /// save encrypted message to realm
-                message.spam = false /// This mail is not spam
+                message.aes = true
+//                message.spam = false /// This mail is not spam
+//                message.rsa = false
                 let hashMail = encrypt(messageData: messageText)!.sha256()  /// hash encrypted message and save to realm
                 message.hashMessage = hashMail
                 message.writeToRealm()
@@ -109,19 +204,96 @@ class SendMailViewController: UIViewController {
                 let newMessage = messageText
                 let corruptedMessage = String(newMessage.dropLast()) /// Corrupt the message(remove the last character for test scenario)
                 message.message = encrypt(messageData: corruptedMessage)!
-                message.spam = false /// This mail is not spam
+                message.aes = true
+//                message.spam = false /// This mail is not spam
+//                message.rsa = false
                 let hashMail = encrypt(messageData: messageText)!.sha256()
                 // hash the mail and save to realm
                 message.hashMessage = hashMail
                 message.writeToRealm()
             }
         }
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "MailsViewController") as? MailsViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
+        if let navigation = self.navigationController {
+            navigation.popToRootViewController(animated: true)
         }
-        
     }
     
+    
+    
+    
+    @IBAction func sendRSAButtonDidTapped(_ sender: Any) {
+        guard let messageText = messageTextView.text, let receiverEmail = receiver else { return }
+        if let currentUser = Auth.auth().currentUser?.email {
+            let message = Message()
+            message.sender = currentUser  // save sender
+            message.receiver = receiverEmail  // save receiver
+            message.hashMessage = messageText.sha256()
+            print("Hashed form of mail : \(messageText.sha256())")
+            
+            if switchState == false {  // Not active the Man in the Middle
+                // Encrypting
+                AsymmetricCryptoManager.sharedInstance.encryptMailWithPublicKey(mail: messageText) { (success, data, error) -> Void in
+                    if success {
+                        let b64encoded = data!.base64EncodedString(options: [])
+                        print("Encrypted Mail : \(b64encoded)")
+                        message.message = b64encoded  // save encrypted message
+                        //message.hashMessage = b64encoded.sha256() // save digest of encrypted mail
+                        message.rsa = true  // save state of rsa
+                    } else {
+                        print("Encrypting error")
+                    }
+                }
+                
+                // Signing
+                let hashMail = messageText.sha256()
+                AsymmetricCryptoManager.sharedInstance.signMessageWithPrivateKey(hashMail) { (success, data, error) -> Void in
+                    if success {
+                        let b64encoded = data!.base64EncodedString(options: [])
+                        print("Signed mail: \(b64encoded)")
+                        message.signedMessage = b64encoded  // save signed message
+                        message.writeToRealm()
+                    } else {
+                        print("Signing error")
+                    }
+                }
+            } else {  // Man in the Middle is active
+                let newMessage = messageText  // message in the text view
+                let corruptedMessage = String(newMessage.dropLast()) /// Corrupt the message(remove the last character for test scenario)
+
+                // Encrypting
+                AsymmetricCryptoManager.sharedInstance.encryptMailWithPublicKey(mail: corruptedMessage) { (success, data, error) -> Void in
+                    if success {
+                        let b64encoded = data!.base64EncodedString(options: [])
+                        print("Encrypted Mail : \(b64encoded)")
+                        message.message = b64encoded  // save encrypted message
+                        //message.hashMessage = b64encoded.sha256() // save digest of encrypted mail
+                        message.rsa = true  // save state of rsa
+                    } else {
+                        print("Encrypting error")
+                    }
+                }
+
+                // Signing
+                let hashMail = messageText.sha256()
+                AsymmetricCryptoManager.sharedInstance.signMessageWithPrivateKey(hashMail) { (success, data, error) -> Void in
+                    if success {
+                        let b64encoded = data!.base64EncodedString(options: [])  // signed message
+                        print("Signed mail(active) : \(b64encoded)")
+                        message.signedMessage = b64encoded  // save signed message in the text view(not corrupted message)
+                        message.writeToRealm()
+                    } else {
+                        print("Error signing message")
+                    }
+                }
+
+            }
+        }
+        if let navigation = self.navigationController {
+            navigation.popToRootViewController(animated: true)
+        }
+    }
+    
+
     
     @IBAction func sendSpamMail(_ sender: Any) {
         guard let messageText = messageTextView.text, let receiverEmail = receiver else { return }
@@ -147,9 +319,8 @@ class SendMailViewController: UIViewController {
                 message.writeToRealm()
             }
         }
-
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SpamMailViewController") as? SpamMailViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
+        if let navigation = self.navigationController {
+            navigation.popToRootViewController(animated: true)
         }
     }
 }
@@ -173,16 +344,82 @@ extension SendMailViewController: UITextViewDelegate {
         messageTextViewDidChange()
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Write something.."
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText:String = textView.text
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        if updatedText.isEmpty {
+
+            textView.text = "Write something.."
+            textView.textColor = UIColor.lightGray
+
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
+            textView.textColor = UIColor.black
+            textView.text = text
+        } else {
+            return true
+        }
+
+        return false
+    }
+    
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+            if self.view.window != nil {
+            if textView.textColor == UIColor.lightGray {
+                textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            }
+        }
+    }
+    
 
     func messageTextViewDidChange() {
            
         guard let message = messageTextView.text, !message.isEmpty else {
-            sendButton.isEnabled = false
-            sendButton.setTitleColor(UIColor.lightText, for: UIControl.State.normal)
+            self.sendAESButton.isEnabled = false
+            self.sendRSAButton.isEnabled = false
+            self.signButton.isEnabled = false
+            self.verifyButton.isEnabled = false
+            self.sendAESButton.setTitleColor(UIColor.lightText, for: UIControl.State.normal)
+            self.sendRSAButton.setTitleColor(UIColor.lightText, for: UIControl.State.normal)
+            self.signButton.setTitleColor(UIColor.lightText, for: UIControl.State.normal)
+            self.verifyButton.setTitleColor(UIColor.lightText, for: UIControl.State.normal)
             return
         }
-        sendButton.isEnabled = true
-        sendButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        
+        if self.pageMode == .aesMail {
+            self.sendAESButton.isEnabled = true
+            self.sendAESButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        } else if self.pageMode == .rsaMail {
+            self.sendRSAButton.isEnabled = true
+            self.signButton.isEnabled = true
+            self.verifyButton.isEnabled = true
+            self.sendRSAButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+            self.signButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+            self.verifyButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        }
+        
+        
+        
+        
+        
+        
     }
 }
 

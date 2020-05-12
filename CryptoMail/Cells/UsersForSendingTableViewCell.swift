@@ -1,28 +1,27 @@
 //
-//  SendSpamTableViewCell.swift
+//  UsersForSendingTableViewCell.swift
 //  CryptoMail
 //
-//  Created by Ali Şengür on 10.05.2020.
+//  Created by Ali Şengür on 11.05.2020.
 //  Copyright © 2020 Ali Şengür. All rights reserved.
 //
 
 import UIKit
 
 
-protocol SendSpamTableViewCellDelegate {
+protocol UsersForSendingTableViewCellDelegate {
     func didTappedWriteMessageButton(index: Int)
 }
 
 
-class SendSpamTableViewCell: UITableViewCell {
+class UsersForSendingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var writeButton: UIButton!
     
-    var delegate: SendSpamTableViewCellDelegate?
+    var delegate: UsersForSendingTableViewCellDelegate?
     var index: IndexPath?
-    
     
     
     override func awakeFromNib() {
@@ -40,4 +39,5 @@ class SendSpamTableViewCell: UITableViewCell {
     @IBAction func writeButtonTapped(_ sender: Any) {
         delegate?.didTappedWriteMessageButton(index: (index!.row))
     }
+    
 }

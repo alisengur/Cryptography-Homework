@@ -29,10 +29,13 @@
 		2260330124682D0D00B2429F /* SpamMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260330024682D0D00B2429F /* SpamMailViewController.swift */; };
 		2260330424683D1600B2429F /* SpamMailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260330224683D1600B2429F /* SpamMailsTableViewCell.swift */; };
 		2260330524683D1600B2429F /* SpamMailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2260330324683D1600B2429F /* SpamMailsTableViewCell.xib */; };
-		22603307246870DC00B2429F /* SendSpamMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22603306246870DC00B2429F /* SendSpamMailViewController.swift */; };
-		2260330A246872A900B2429F /* SendSpamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22603308246872A900B2429F /* SendSpamTableViewCell.swift */; };
-		2260330B246872A900B2429F /* SendSpamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22603309246872A900B2429F /* SendSpamTableViewCell.xib */; };
 		2260330D2468990400B2429F /* SpamAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260330C2468990400B2429F /* SpamAnalysisViewController.swift */; };
+		226F1F71246992A40018D92A /* RSAMailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F1F70246992A40018D92A /* RSAMailsViewController.swift */; };
+		226F1F7324699DC90018D92A /* UsersForSendingVievController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F1F7224699DC90018D92A /* UsersForSendingVievController.swift */; };
+		226F1F7624699F7A0018D92A /* UsersForSendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F1F7424699F7A0018D92A /* UsersForSendingTableViewCell.swift */; };
+		226F1F7724699F7A0018D92A /* UsersForSendingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226F1F7524699F7A0018D92A /* UsersForSendingTableViewCell.xib */; };
+		226F1F7A2469B6F80018D92A /* RSAMailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226F1F782469B6F80018D92A /* RSAMailsTableViewCell.swift */; };
+		226F1F7B2469B6F80018D92A /* RSAMailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226F1F792469B6F80018D92A /* RSAMailsTableViewCell.xib */; };
 		227827452444E081009FBB7C /* AESEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227827442444E081009FBB7C /* AESEncryption.swift */; };
 		2278C796244F829100E413C3 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278C795244F829100E413C3 /* RandomNumberGenerator.swift */; };
 		227E303724624D300048DA9D /* DigitalSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227E303624624D300048DA9D /* DigitalSignature.swift */; };
@@ -67,10 +70,13 @@
 		2260330024682D0D00B2429F /* SpamMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpamMailViewController.swift; path = /Users/alisengur/Repository/CryptoMail/CryptoMail/Controllers/SpamMailViewController.swift; sourceTree = "<absolute>"; };
 		2260330224683D1600B2429F /* SpamMailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpamMailsTableViewCell.swift; sourceTree = "<group>"; };
 		2260330324683D1600B2429F /* SpamMailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpamMailsTableViewCell.xib; sourceTree = "<group>"; };
-		22603306246870DC00B2429F /* SendSpamMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSpamMailViewController.swift; sourceTree = "<group>"; };
-		22603308246872A900B2429F /* SendSpamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSpamTableViewCell.swift; sourceTree = "<group>"; };
-		22603309246872A900B2429F /* SendSpamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendSpamTableViewCell.xib; sourceTree = "<group>"; };
 		2260330C2468990400B2429F /* SpamAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpamAnalysisViewController.swift; sourceTree = "<group>"; };
+		226F1F70246992A40018D92A /* RSAMailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAMailsViewController.swift; sourceTree = "<group>"; };
+		226F1F7224699DC90018D92A /* UsersForSendingVievController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersForSendingVievController.swift; sourceTree = "<group>"; };
+		226F1F7424699F7A0018D92A /* UsersForSendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersForSendingTableViewCell.swift; sourceTree = "<group>"; };
+		226F1F7524699F7A0018D92A /* UsersForSendingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersForSendingTableViewCell.xib; sourceTree = "<group>"; };
+		226F1F782469B6F80018D92A /* RSAMailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAMailsTableViewCell.swift; sourceTree = "<group>"; };
+		226F1F792469B6F80018D92A /* RSAMailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSAMailsTableViewCell.xib; sourceTree = "<group>"; };
 		227827442444E081009FBB7C /* AESEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESEncryption.swift; sourceTree = "<group>"; };
 		2278C795244F829100E413C3 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		227E303624624D300048DA9D /* DigitalSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalSignature.swift; sourceTree = "<group>"; };
@@ -135,13 +141,14 @@
 				22201045243CCB790023C851 /* SignUpViewController.swift */,
 				2220104A243CD1990023C851 /* LoginViewController.swift */,
 				2220104C243CD7A60023C851 /* MailsViewController.swift */,
+				226F1F70246992A40018D92A /* RSAMailsViewController.swift */,
 				2260330024682D0D00B2429F /* SpamMailViewController.swift */,
 				22201059243D10C50023C851 /* UsersViewController.swift */,
 				2220104E243CE62B0023C851 /* SettingsTableViewController.swift */,
 				223AA287243E14E300618257 /* SendMailViewController.swift */,
 				22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */,
-				22603306246870DC00B2429F /* SendSpamMailViewController.swift */,
 				2260330C2468990400B2429F /* SpamAnalysisViewController.swift */,
+				226F1F7224699DC90018D92A /* UsersForSendingVievController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,8 +171,10 @@
 				223AA28B243E34CD00618257 /* MailsTableViewCell.xib */,
 				2260330224683D1600B2429F /* SpamMailsTableViewCell.swift */,
 				2260330324683D1600B2429F /* SpamMailsTableViewCell.xib */,
-				22603308246872A900B2429F /* SendSpamTableViewCell.swift */,
-				22603309246872A900B2429F /* SendSpamTableViewCell.xib */,
+				226F1F7424699F7A0018D92A /* UsersForSendingTableViewCell.swift */,
+				226F1F7524699F7A0018D92A /* UsersForSendingTableViewCell.xib */,
+				226F1F782469B6F80018D92A /* RSAMailsTableViewCell.swift */,
+				226F1F792469B6F80018D92A /* RSAMailsTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -258,9 +267,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2260330B246872A900B2429F /* SendSpamTableViewCell.xib in Resources */,
 				223AA28D243E34CD00618257 /* MailsTableViewCell.xib in Resources */,
 				2220103A243CC3480023C851 /* LaunchScreen.storyboard in Resources */,
+				226F1F7B2469B6F80018D92A /* RSAMailsTableViewCell.xib in Resources */,
+				226F1F7724699F7A0018D92A /* UsersForSendingTableViewCell.xib in Resources */,
 				22201044243CC5F20023C851 /* GoogleService-Info.plist in Resources */,
 				22201037243CC3480023C851 /* Assets.xcassets in Resources */,
 				2260330524683D1600B2429F /* SpamMailsTableViewCell.xib in Resources */,
@@ -321,21 +331,23 @@
 				2220102E243CC3380023C851 /* AppDelegate.swift in Sources */,
 				2220104D243CD7A60023C851 /* MailsViewController.swift in Sources */,
 				227E303724624D300048DA9D /* DigitalSignature.swift in Sources */,
-				22603307246870DC00B2429F /* SendSpamMailViewController.swift in Sources */,
 				22CC11AC2450D5920092E4C7 /* DetailMailViewController.swift in Sources */,
+				226F1F7624699F7A0018D92A /* UsersForSendingTableViewCell.swift in Sources */,
+				226F1F7A2469B6F80018D92A /* RSAMailsTableViewCell.swift in Sources */,
 				2260330124682D0D00B2429F /* SpamMailViewController.swift in Sources */,
 				227827452444E081009FBB7C /* AESEncryption.swift in Sources */,
 				2220105A243D10C50023C851 /* UsersViewController.swift in Sources */,
 				223AA285243E10DB00618257 /* UsersTableViewCell.swift in Sources */,
 				22201049243CCBAF0023C851 /* AuthService.swift in Sources */,
-				2260330A246872A900B2429F /* SendSpamTableViewCell.swift in Sources */,
 				223AA28C243E34CD00618257 /* MailsTableViewCell.swift in Sources */,
+				226F1F7324699DC90018D92A /* UsersForSendingVievController.swift in Sources */,
 				223AA288243E14E300618257 /* SendMailViewController.swift in Sources */,
 				2278C796244F829100E413C3 /* RandomNumberGenerator.swift in Sources */,
 				22201046243CCB790023C851 /* SignUpViewController.swift in Sources */,
 				22BF13722464ED0600FBAA52 /* AsymmetricCryptoManager.swift in Sources */,
 				2220104B243CD1990023C851 /* LoginViewController.swift in Sources */,
 				2260330424683D1600B2429F /* SpamMailsTableViewCell.swift in Sources */,
+				226F1F71246992A40018D92A /* RSAMailsViewController.swift in Sources */,
 				22201053243CF8010023C851 /* User.swift in Sources */,
 				22201030243CC3380023C851 /* SceneDelegate.swift in Sources */,
 				22201055243CF81D0023C851 /* Message.swift in Sources */,

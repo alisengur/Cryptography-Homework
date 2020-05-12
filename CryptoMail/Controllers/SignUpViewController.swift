@@ -71,15 +71,15 @@ class SignUpViewController: UIViewController {
         }, onError: { error in
               switch error {
               case .weakPassword:
-                self.errorLabel.text = "Lütfen daha güçlü bir şifre girin"
+                self.errorLabel.text = "Please enter a stronger password"
               case .invalidEmail:
-                self.errorLabel.text = "Email adresi geçersiz"
+                self.errorLabel.text = "This email address is invalid"
               case .emailAlreadyInUse:
-                self.errorLabel.text = "Bu email adresi zaten kullanılıyor"
+                self.errorLabel.text = "This email address is already in use"
               case .wrongPassword:
-                self.errorLabel.text = "Şifreyi hatalı girdiniz"
+                self.errorLabel.text = "Password incorrect"
               default:
-                print("Hata")
+                print("Error")
               }
         })
     }

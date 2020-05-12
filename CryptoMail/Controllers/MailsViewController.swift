@@ -45,7 +45,7 @@ class MailsViewController: UIViewController {
     func reloadData() {
         let realm = try! Realm()
         // fetch the current user messages
-        let predicate = NSPredicate(format: "spam = false")
+        let predicate = NSPredicate(format: "aes = true")
         messages = realm.objects(Message.self).filter(predicate)
         
     }
@@ -53,7 +53,8 @@ class MailsViewController: UIViewController {
     
     @IBAction func navigateToSendMail(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let vc = mainStoryboard.instantiateViewController(identifier: "SendSpamMailViewController") as? SendSpamMailViewController {
+        if let vc = mainStoryboard.instantiateViewController(identifier: "UsersForSendingVievController") as? UsersForSendingVievController {
+            vc.titleMode = .aesTitle
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -85,8 +86,13 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.receiverLabel.text = messages[indexPath.row].receiver
         
         // decrypted message
-        let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-        cell.messageLabel.text = decryptedMessage
+        if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
+            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            cell.messageLabel.text = decryptedMessage
+        } else {
+            cell.messageLabel.text = messages[indexPath.row].message
+        }
+        
         
         if controlIntegrityOfMessages(message: messages[indexPath.row].message, hashMail: messages[indexPath.row].hashMessage) {
             cell.cautionImage.isHidden = true
@@ -101,6 +107,7 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(identifier: "DetailMailViewController") as? DetailMailViewController {
+            vc.pageMode = .aes
             vc.senderTitle = "From: '\(messages[indexPath.row].sender)'"
             vc.receiverTitle = "To: '\(messages[indexPath.row].receiver)'"
             let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")

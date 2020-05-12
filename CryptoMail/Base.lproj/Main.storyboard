@@ -44,15 +44,15 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivZ-gL-QuR">
                                         <rect key="frame" x="0.0" y="154" width="250" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnO-gQ-CWv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnO-gQ-CWv">
                                         <rect key="frame" x="0.0" y="208" width="250" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xgh-q3-4Wv"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78p-5t-uDp">
@@ -184,15 +184,15 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l8I-mu-W92">
                                         <rect key="frame" x="0.0" y="258" width="250" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuB-Wa-1vE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuB-Wa-1vE">
                                         <rect key="frame" x="0.0" y="312" width="250" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="C36-df-3M3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hch-Xr-umc">
@@ -256,7 +256,7 @@
             </objects>
             <point key="canvasLocation" x="138" y="834"/>
         </scene>
-        <!--Mails-->
+        <!--AES Mails-->
         <scene sceneID="x5N-Wn-GKH">
             <objects>
                 <viewController storyboardIdentifier="MailsViewController" id="LD5-Zv-YNg" customClass="MailsViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
@@ -278,7 +278,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KWm-OY-h1Y"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Mails" id="tci-Yn-3BX">
+                    <navigationItem key="navigationItem" title="AES Mails" id="tci-Yn-3BX">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0S8-Md-6Tj">
                             <connections>
                                 <action selector="navigateToSendMail:" destination="LD5-Zv-YNg" id="2AU-MI-VQ7"/>
@@ -339,11 +339,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-Fh-qV4">
-                                <rect key="frame" x="20" y="616" width="374" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-Fh-qV4">
+                                <rect key="frame" x="20" y="616" width="374" height="60"/>
                                 <color key="backgroundColor" white="0.91000000000000003" alpha="0.84705882352941175" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3Nn-TJ-Fui"/>
+                                    <constraint firstAttribute="height" constant="60" id="3Nn-TJ-Fui"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -437,14 +437,52 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="hgm-Hp-Xud" kind="relationship" relationship="viewControllers" id="bcW-lM-thS"/>
-                        <segue destination="Z6A-vZ-7Nz" kind="relationship" relationship="viewControllers" id="Pfd-eK-6tr"/>
-                        <segue destination="JOY-Pa-9zY" kind="relationship" relationship="viewControllers" id="BV1-UM-Ao7"/>
+                        <segue destination="hgm-Hp-Xud" kind="relationship" relationship="viewControllers" id="ESe-h9-rgo"/>
+                        <segue destination="KPe-gV-qaA" kind="relationship" relationship="viewControllers" id="7lF-F8-Exo"/>
+                        <segue destination="Z6A-vZ-7Nz" kind="relationship" relationship="viewControllers" id="WOQ-Cq-abL"/>
+                        <segue destination="JOY-Pa-9zY" kind="relationship" relationship="viewControllers" id="kGL-oU-FF6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfh-CB-JXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048" y="563"/>
+        </scene>
+        <!--RSA Mails-->
+        <scene sceneID="H6R-Dh-zn2">
+            <objects>
+                <viewController storyboardIdentifier="RSAMailsViewController" id="9pT-qj-4MC" customClass="RSAMailsViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HRU-Wh-ZCe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rh1-Kf-9Jb">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Rh1-Kf-9Jb" firstAttribute="leading" secondItem="DRi-IP-ZzN" secondAttribute="leading" id="1Fv-tN-ODt"/>
+                            <constraint firstItem="DRi-IP-ZzN" firstAttribute="trailing" secondItem="Rh1-Kf-9Jb" secondAttribute="trailing" id="O7N-0a-zoa"/>
+                            <constraint firstItem="Rh1-Kf-9Jb" firstAttribute="top" secondItem="DRi-IP-ZzN" secondAttribute="top" id="ueF-7u-qnr"/>
+                            <constraint firstItem="DRi-IP-ZzN" firstAttribute="bottom" secondItem="Rh1-Kf-9Jb" secondAttribute="bottom" id="ufJ-ub-HA6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DRi-IP-ZzN"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RSA Mails" id="tyN-aH-7ce">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jxg-gr-oqn">
+                            <connections>
+                                <action selector="navigateToSendMail:" destination="9pT-qj-4MC" id="CyT-LB-ljR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Rh1-Kf-9Jb" id="1qa-i7-4ff"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i1G-bb-E8k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3051" y="551"/>
         </scene>
         <!--Spam Mails-->
         <scene sceneID="iKW-Nj-kSd">
@@ -486,12 +524,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuD-MN-J1A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3051" y="563"/>
+            <point key="canvasLocation" x="3051" y="1406"/>
         </scene>
-        <!--Send Spam Mail View Controller-->
+        <!--Users For Sending Viev Controller-->
         <scene sceneID="wKS-To-K7u">
             <objects>
-                <viewController storyboardIdentifier="SendSpamMailViewController" id="5W9-Fn-mG2" customClass="SendSpamMailViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsersForSendingVievController" id="5W9-Fn-mG2" customClass="UsersForSendingVievController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hjU-qX-EgJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -511,12 +549,12 @@
                         <viewLayoutGuide key="safeArea" id="Zgo-ku-yZd"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="UXa-I3-Lt5" id="gWZ-sp-gut"/>
+                        <outlet property="tableView" destination="UXa-I3-Lt5" id="yUK-g5-gyE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewo-vv-8Yk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3857" y="567"/>
+            <point key="canvasLocation" x="3848" y="1406"/>
         </scene>
         <!--Spam Analysis View Controller-->
         <scene sceneID="Wwg-vG-Gzf">
@@ -991,7 +1029,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRE-Uy-daV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4624.6376811594209" y="363.61607142857139"/>
+            <point key="canvasLocation" x="5534.7826086956529" y="1170.5357142857142"/>
         </scene>
         <!--All Users-->
         <scene sceneID="dZ0-eV-lxi">
@@ -1028,7 +1066,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wye-BB-ZeR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3010" y="1304"/>
+            <point key="canvasLocation" x="3051" y="2083"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="7EK-au-LR2">
@@ -1118,7 +1156,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHB-3D-nci" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3819" y="1304"/>
+            <point key="canvasLocation" x="3848" y="2083"/>
         </scene>
         <!--Send Mail View Controller-->
         <scene sceneID="wB1-ZF-grm">
@@ -1129,34 +1167,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="bno-NM-dZ7">
-                                <rect key="frame" x="20" y="57" width="374" height="128"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <rect key="frame" x="20" y="57" width="374" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="7n3-28-R3j"/>
+                                    <constraint firstAttribute="height" constant="200" id="7n3-28-R3j"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrl-uL-T2G">
-                                <rect key="frame" x="142" y="213" width="130" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="QvX-A8-RFB"/>
-                                    <constraint firstAttribute="width" constant="130" id="qr5-8J-AQB"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Generate Spam"/>
-                                <connections>
-                                    <action selector="generateSpamMail:" destination="5yu-aa-y1I" eventType="touchUpInside" id="Ubt-Gv-eEP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wru-4i-4oj">
-                                <rect key="frame" x="142" y="251" width="130" height="30"/>
+                                <rect key="frame" x="142" y="401" width="130" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="2x4-Yi-TFI"/>
-                                    <constraint firstAttribute="height" constant="30" id="8A3-y0-Q8d"/>
+                                    <constraint firstAttribute="width" constant="130" id="C12-QS-Uze"/>
+                                    <constraint firstAttribute="height" constant="30" id="zfd-ce-miD"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Sign"/>
@@ -1165,11 +1190,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSi-z4-jix">
-                                <rect key="frame" x="142" y="289" width="130" height="30"/>
+                                <rect key="frame" x="142" y="439" width="130" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Umq-OU-nEl"/>
-                                    <constraint firstAttribute="width" constant="130" id="p9k-aN-OlG"/>
+                                    <constraint firstAttribute="height" constant="30" id="RKI-7d-feT"/>
+                                    <constraint firstAttribute="width" constant="130" id="kmM-Br-zk4"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Verify"/>
@@ -1177,79 +1202,208 @@
                                     <action selector="verify:" destination="5yu-aa-y1I" eventType="touchUpInside" id="Lnd-bo-HB9"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gm4-XB-hTy">
-                                <rect key="frame" x="250" y="331" width="51" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="49" id="fV1-dX-cor"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="corruptSwitchChanged:" destination="5yu-aa-y1I" eventType="valueChanged" id="Ahb-zA-Xgq"/>
-                                </connections>
-                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUO-cm-R9L">
-                                <rect key="frame" x="142" y="376" width="130" height="30"/>
+                                <rect key="frame" x="142" y="522" width="130" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="Mq8-PE-cKf"/>
-                                    <constraint firstAttribute="height" constant="30" id="ZFu-GH-aJh"/>
+                                    <constraint firstAttribute="height" constant="30" id="0Xh-fc-8dE"/>
+                                    <constraint firstAttribute="width" constant="130" id="DNh-wJ-Ssr"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Send"/>
+                                <state key="normal" title="Send with AES"/>
                                 <connections>
-                                    <action selector="sendButtonDidTapped:" destination="5yu-aa-y1I" eventType="touchUpInside" id="1sf-mK-J3f"/>
+                                    <action selector="sendAESButtonDidTapped:" destination="5yu-aa-y1I" eventType="touchUpInside" id="t1u-cU-XMK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Corrupt the mail " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yka-uB-G73">
-                                <rect key="frame" x="112" y="336" width="130" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9I-Zr-dRq">
+                                <rect key="frame" x="142" y="560" width="130" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="JZu-gV-NrA"/>
-                                    <constraint firstAttribute="height" constant="21" id="Vh9-fA-y0D"/>
+                                    <constraint firstAttribute="height" constant="30" id="Z8g-sd-nK1"/>
+                                    <constraint firstAttribute="width" constant="130" id="Z99-bm-UQo"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="dZa-Wy-sj9"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="fog-LG-0Q3"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Send with RSA"/>
+                                <connections>
+                                    <action selector="sendRSAButtonDidTapped:" destination="5yu-aa-y1I" eventType="touchUpInside" id="xsx-09-tzm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activate Man in the Middle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yka-uB-G73">
+                                <rect key="frame" x="62" y="483" width="210" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Ntn-ja-VbJ"/>
+                                    <constraint firstAttribute="width" constant="210" id="k6U-Hc-poE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pl-Os-JBV">
-                                <rect key="frame" x="142" y="414" width="130" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pl-Os-JBV">
+                                <rect key="frame" x="142" y="598" width="130" height="30"/>
                                 <color key="backgroundColor" red="0.82044627569999995" green="0.59148410220000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IUU-eu-EUV"/>
+                                    <constraint firstAttribute="width" constant="130" id="lGe-gN-Vzi"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Send Spam Mail"/>
                                 <connections>
                                     <action selector="sendSpamMail:" destination="5yu-aa-y1I" eventType="touchUpInside" id="FnC-z5-liv"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gm4-XB-hTy">
+                                <rect key="frame" x="288" y="478" width="51" height="31"/>
+                                <connections>
+                                    <action selector="corruptSwitchChanged:" destination="5yu-aa-y1I" eventType="valueChanged" id="Ahb-zA-Xgq"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXR-hT-Zn0">
+                                <rect key="frame" x="142" y="325" width="130" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DW3-Ou-J2U"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="E59-Ub-XI1"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="PcK-ON-NZx"/>
+                                    <constraint firstAttribute="width" constant="130" id="dqb-IA-kVm"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Generate KeyPair"/>
+                                <connections>
+                                    <action selector="generateKeypair:" destination="5yu-aa-y1I" eventType="touchUpInside" id="ZGO-4P-4HX"/>
+                                    <action selector="generateSpamMail:" destination="5yu-aa-y1I" eventType="touchUpInside" id="iLa-VA-lfL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfI-ug-YEk">
+                                <rect key="frame" x="20" y="288" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrl-uL-T2G">
+                                <rect key="frame" x="142" y="363" width="130" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="Rrg-Bk-2lM"/>
+                                    <constraint firstAttribute="height" constant="30" id="npp-MD-CW8"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Generate Spam"/>
+                                <connections>
+                                    <action selector="generateSpamMail:" destination="5yu-aa-y1I" eventType="touchUpInside" id="Ubt-Gv-eEP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="gm4-XB-hTy" secondAttribute="trailing" constant="115" id="10X-Os-dx5"/>
-                            <constraint firstItem="TUO-cm-R9L" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="191" id="7cN-iE-D4f"/>
-                            <constraint firstItem="Zrl-uL-T2G" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="28" id="7yf-6n-ggv"/>
-                            <constraint firstItem="gm4-XB-hTy" firstAttribute="centerY" secondItem="yka-uB-G73" secondAttribute="centerY" id="A5g-lZ-jHt"/>
-                            <constraint firstItem="Zrl-uL-T2G" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="142" id="B5u-qb-raS"/>
-                            <constraint firstItem="vSi-z4-jix" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="142" id="G12-CV-InB"/>
-                            <constraint firstItem="vSi-z4-jix" firstAttribute="top" secondItem="wru-4i-4oj" secondAttribute="bottom" constant="8" id="Hzp-to-IT0"/>
+                            <constraint firstItem="TUO-cm-R9L" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="4LP-Wz-bA4"/>
+                            <constraint firstItem="WfI-ug-YEk" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="20" id="5xJ-r9-MdT"/>
+                            <constraint firstItem="gm4-XB-hTy" firstAttribute="leading" secondItem="yka-uB-G73" secondAttribute="trailing" constant="16" id="6SC-ON-czz"/>
+                            <constraint firstItem="hXR-hT-Zn0" firstAttribute="top" secondItem="WfI-ug-YEk" secondAttribute="bottom" constant="16" id="8OW-ya-9vZ"/>
+                            <constraint firstItem="Zrl-uL-T2G" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="A3t-Q5-uiA"/>
+                            <constraint firstItem="wru-4i-4oj" firstAttribute="top" secondItem="Zrl-uL-T2G" secondAttribute="bottom" constant="8" id="AC9-gq-5mF"/>
+                            <constraint firstItem="wru-4i-4oj" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="BeH-ib-dM6"/>
+                            <constraint firstItem="vSi-z4-jix" firstAttribute="top" secondItem="wru-4i-4oj" secondAttribute="bottom" constant="8" id="Dd1-Gp-eNO"/>
+                            <constraint firstItem="WfI-ug-YEk" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="31" id="Ely-XI-GE5"/>
                             <constraint firstItem="bno-NM-dZ7" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="20" id="Juh-sS-2X7"/>
-                            <constraint firstItem="wru-4i-4oj" firstAttribute="top" secondItem="Zrl-uL-T2G" secondAttribute="bottom" constant="8" id="Ulx-Xi-iFY"/>
+                            <constraint firstItem="2pl-Os-JBV" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="R7Q-rk-6MA"/>
+                            <constraint firstItem="TUO-cm-R9L" firstAttribute="top" secondItem="yka-uB-G73" secondAttribute="bottom" constant="18" id="Tpd-Up-8ZG"/>
                             <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="bno-NM-dZ7" secondAttribute="trailing" constant="20" id="VTv-HW-BgM"/>
-                            <constraint firstItem="yka-uB-G73" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="112" id="Y7b-Sg-PpN"/>
-                            <constraint firstItem="yka-uB-G73" firstAttribute="top" secondItem="vSi-z4-jix" secondAttribute="bottom" constant="17" id="euT-YQ-fM2"/>
-                            <constraint firstItem="wru-4i-4oj" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="142" id="h0L-GH-iLt"/>
+                            <constraint firstItem="yka-uB-G73" firstAttribute="leading" secondItem="xJq-Ao-q5d" secondAttribute="leading" constant="62" id="WQ5-WG-uyc"/>
+                            <constraint firstItem="L9I-Zr-dRq" firstAttribute="top" secondItem="TUO-cm-R9L" secondAttribute="bottom" constant="8" id="bFy-vP-JJC"/>
+                            <constraint firstItem="hXR-hT-Zn0" firstAttribute="top" secondItem="WfI-ug-YEk" secondAttribute="bottom" constant="16" id="cAq-De-tf5"/>
+                            <constraint firstItem="Zrl-uL-T2G" firstAttribute="top" secondItem="hXR-hT-Zn0" secondAttribute="bottom" constant="8" id="e8t-UW-GSj"/>
+                            <constraint firstItem="hXR-hT-Zn0" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="ecY-XL-VpX"/>
+                            <constraint firstItem="yka-uB-G73" firstAttribute="top" secondItem="vSi-z4-jix" secondAttribute="bottom" constant="14" id="ijK-aC-6m2"/>
+                            <constraint firstItem="gm4-XB-hTy" firstAttribute="centerY" secondItem="yka-uB-G73" secondAttribute="centerY" id="lZT-7l-1AY"/>
                             <constraint firstItem="bno-NM-dZ7" firstAttribute="top" secondItem="xJq-Ao-q5d" secondAttribute="top" constant="13" id="lmS-9I-kZv"/>
-                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="TUO-cm-R9L" secondAttribute="trailing" constant="142" id="xLZ-8d-Rfz"/>
+                            <constraint firstItem="Zrl-uL-T2G" firstAttribute="top" secondItem="bno-NM-dZ7" secondAttribute="bottom" constant="106" id="oue-np-zn8"/>
+                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2pl-Os-JBV" secondAttribute="bottom" constant="10" id="qso-Jn-3Mt"/>
+                            <constraint firstItem="L9I-Zr-dRq" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="sK9-AJ-GRO"/>
+                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gm4-XB-hTy" secondAttribute="trailing" constant="10" id="uoL-Cq-sbT"/>
+                            <constraint firstItem="2pl-Os-JBV" firstAttribute="top" secondItem="L9I-Zr-dRq" secondAttribute="bottom" constant="8" id="wVk-DM-NkG"/>
+                            <constraint firstItem="xJq-Ao-q5d" firstAttribute="trailing" secondItem="WfI-ug-YEk" secondAttribute="trailing" constant="20" id="yvv-7L-sif"/>
+                            <constraint firstItem="vSi-z4-jix" firstAttribute="centerX" secondItem="7dP-zs-eaC" secondAttribute="centerX" id="ztb-vl-HSl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xJq-Ao-q5d"/>
                     </view>
                     <connections>
                         <outlet property="corruptSwitch" destination="gm4-XB-hTy" id="bdm-VW-dk0"/>
+                        <outlet property="generateSpamButton" destination="Zrl-uL-T2G" id="Qd6-Jr-vzT"/>
+                        <outlet property="keyPairButton" destination="hXR-hT-Zn0" id="0J1-4W-Igv"/>
+                        <outlet property="keyPairLabel" destination="WfI-ug-YEk" id="6qV-p6-qsB"/>
                         <outlet property="messageTextView" destination="bno-NM-dZ7" id="5W1-i1-2WP"/>
-                        <outlet property="sendButton" destination="TUO-cm-R9L" id="opc-sx-DGb"/>
+                        <outlet property="sendAESButton" destination="TUO-cm-R9L" id="faO-ko-a5o"/>
+                        <outlet property="sendRSAButton" destination="L9I-Zr-dRq" id="7bt-NK-6Wf"/>
                         <outlet property="sendSpamButton" destination="2pl-Os-JBV" id="MuP-vQ-G2m"/>
+                        <outlet property="signButton" destination="wru-4i-4oj" id="h1a-Rg-NnO"/>
+                        <outlet property="verifyButton" destination="vSi-z4-jix" id="iPf-hk-Yus"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5C-uD-fJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4626.0869565217399" y="1309.8214285714284"/>
+            <point key="canvasLocation" x="4624.6376811594209" y="2082.5892857142858"/>
+        </scene>
+        <!--Send Signed Mail View Controller-->
+        <scene sceneID="WBn-G3-x26">
+            <objects>
+                <viewController storyboardIdentifier="SendSignedMailViewController" id="z2u-ak-Kwo" customClass="SendSignedMailViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bub-uF-4Uz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="j6m-o6-Byk">
+                                <rect key="frame" x="20" y="59" width="374" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="JCM-uR-7mC"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="71j-6F-I9v">
+                                <rect key="frame" x="281" y="297" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activate Man in the Middle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-0P-eEM">
+                                <rect key="frame" x="50" y="302" width="215" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="215" id="maA-Ze-xhZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-Vw-LgS">
+                                <rect key="frame" x="167" y="343" width="80" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IBd-bB-t1q"/>
+                                    <constraint firstAttribute="width" constant="80" id="wQj-7P-tUo"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Send"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="j6m-o6-Byk" firstAttribute="leading" secondItem="Tzl-1Y-cuf" secondAttribute="leading" constant="20" id="1If-7W-GTM"/>
+                            <constraint firstItem="Gw9-Vw-LgS" firstAttribute="centerX" secondItem="bub-uF-4Uz" secondAttribute="centerX" id="BWy-d7-NFf"/>
+                            <constraint firstItem="j6m-o6-Byk" firstAttribute="top" secondItem="Tzl-1Y-cuf" secondAttribute="top" constant="15" id="G3M-SJ-Iey"/>
+                            <constraint firstItem="71j-6F-I9v" firstAttribute="leading" secondItem="LJa-0P-eEM" secondAttribute="trailing" constant="16" id="GLm-3C-bWm"/>
+                            <constraint firstItem="LJa-0P-eEM" firstAttribute="top" secondItem="j6m-o6-Byk" secondAttribute="bottom" constant="43" id="JRP-Hf-XYn"/>
+                            <constraint firstItem="Tzl-1Y-cuf" firstAttribute="trailing" secondItem="j6m-o6-Byk" secondAttribute="trailing" constant="20" id="JYM-BV-e4h"/>
+                            <constraint firstItem="LJa-0P-eEM" firstAttribute="centerY" secondItem="71j-6F-I9v" secondAttribute="centerY" id="PYK-oL-aWn"/>
+                            <constraint firstItem="LJa-0P-eEM" firstAttribute="leading" secondItem="Tzl-1Y-cuf" secondAttribute="leading" constant="50" id="bo4-dU-3Aw"/>
+                            <constraint firstItem="Gw9-Vw-LgS" firstAttribute="top" secondItem="LJa-0P-eEM" secondAttribute="bottom" constant="20" id="y7H-az-Oqy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tzl-1Y-cuf"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xTd-oz-646" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5365.217391304348" y="2079.9107142857142"/>
         </scene>
         <!--Users-->
         <scene sceneID="MSL-cI-MSu">
@@ -1268,7 +1422,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpM-Ee-IJM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222" y="1310"/>
+            <point key="canvasLocation" x="2222" y="2083"/>
         </scene>
         <!--Spam Mails-->
         <scene sceneID="ok5-JF-kDR">
@@ -1287,13 +1441,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hl6-DE-gun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222" y="563"/>
+            <point key="canvasLocation" x="2222" y="1406"/>
         </scene>
-        <!--Mails-->
+        <!--AES Mails-->
         <scene sceneID="nJR-TR-ecn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hgm-Hp-Xud" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mails" image="mail" id="caj-Y5-UyF"/>
+                    <tabBarItem key="tabBarItem" title="AES Mails" image="mail" id="caj-Y5-UyF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jz0-P2-CoF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1307,6 +1461,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPU-g2-LAs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2222" y="-135"/>
+        </scene>
+        <!--RSA Mails-->
+        <scene sceneID="lCl-p1-OUB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KPe-gV-qaA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="RSA Mails" image="mail" id="pqA-2h-MtL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ePZ-0w-5c2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pT-qj-4MC" kind="relationship" relationship="rootViewController" id="k88-7A-ZW0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="god-rn-Rkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230.434782608696" y="551.78571428571422"/>
         </scene>
     </scenes>
     <resources>

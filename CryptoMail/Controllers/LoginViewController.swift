@@ -78,13 +78,13 @@ class LoginViewController: UIViewController {
         }, onError: { error in
               switch error {
               case .userNotFound:
-                self.errorLabel.text = "Kullanıcı bulunamadı"
+                self.errorLabel.text = "User not found"
               case .wrongPassword:
-                self.errorLabel.text = "Parolayı doğru giriniz"
+                self.errorLabel.text = "Enter the password correctly"
               case .invalidEmail:
-                self.errorLabel.text = "Email adresini doğru giriniz"
+                self.errorLabel.text = "Enter the email address correctly"
               default:
-                print("Hata")
+                print("Error")
               }
         })
 

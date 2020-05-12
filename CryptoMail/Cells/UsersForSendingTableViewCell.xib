@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="UsersForSendingTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsersForSendingTableViewCell" id="KGk-i7-Jjw" customClass="UsersForSendingTableViewCell" customModule="CryptoMail" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4t-dX-zjJ">
+                        <rect key="frame" x="16" y="6" width="40" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="2tI-Q6-yat"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbN-7W-RJM">
+                        <rect key="frame" x="251" y="9" width="60" height="25"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="7Ne-EA-pAs"/>
+                            <constraint firstAttribute="width" constant="60" id="CZm-ti-IZk"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Write"/>
+                        <connections>
+                            <action selector="writeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="X5j-8o-OLU"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3E-KF-jMU">
+                        <rect key="frame" x="16" y="26" width="32" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="tbN-7W-RJM" secondAttribute="bottom" constant="9" id="0l1-q4-ojT"/>
+                    <constraint firstItem="O3E-KF-jMU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1PD-Mx-lhe"/>
+                    <constraint firstAttribute="bottom" secondItem="O3E-KF-jMU" secondAttribute="bottom" constant="4" id="2xv-A6-EI0"/>
+                    <constraint firstItem="tbN-7W-RJM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P4t-dX-zjJ" secondAttribute="trailing" constant="10" id="7D4-nJ-80Z"/>
+                    <constraint firstItem="tbN-7W-RJM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O3E-KF-jMU" secondAttribute="trailing" constant="10" id="C9S-Z7-Uzp"/>
+                    <constraint firstItem="O3E-KF-jMU" firstAttribute="top" secondItem="P4t-dX-zjJ" secondAttribute="bottom" id="MQY-w6-nq9"/>
+                    <constraint firstAttribute="trailing" secondItem="tbN-7W-RJM" secondAttribute="trailing" constant="9" id="NpE-08-ZHk"/>
+                    <constraint firstItem="tbN-7W-RJM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="eXb-Cv-pHD"/>
+                    <constraint firstItem="P4t-dX-zjJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="qGv-Xk-wtg"/>
+                    <constraint firstItem="P4t-dX-zjJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tjh-bU-BSm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="emailLabel" destination="O3E-KF-jMU" id="4Sb-dF-Lgu"/>
+                <outlet property="usernameLabel" destination="P4t-dX-zjJ" id="iqH-RS-M6Q"/>
+                <outlet property="writeButton" destination="tbN-7W-RJM" id="HLP-sC-XBQ"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
+        </tableViewCell>
+    </objects>
+</document>

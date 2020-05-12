@@ -1,8 +1,8 @@
 //
-//  SendSpamMailViewController.swift
+//  UsersForSendingVievController.swift
 //  CryptoMail
 //
-//  Created by Ali Şengür on 10.05.2020.
+//  Created by Ali Şengür on 11.05.2020.
 //  Copyright © 2020 Ali Şengür. All rights reserved.
 //
 
@@ -11,25 +11,40 @@ import RealmSwift
 import FirebaseAuth
 import FirebaseDatabase
 
-class SendSpamMailViewController: UIViewController {
+
+enum TitleMode {
+    case aesTitle
+    case rsaTitle
+    case spamTitle
+}
+
+class UsersForSendingVievController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
     var users: Results<User>!
-    
+    var titleMode: TitleMode = .aesTitle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setTableView()
         self.reloadData()
     }
     
     fileprivate func setTableView() {
-        self.navigationItem.title = "Users"
-        let tableViewCellNib = UINib(nibName: "SendSpamTableViewCell", bundle: nil)
+        if titleMode == .aesTitle {
+            self.navigationItem.title = "Send AES Mail"
+        } else if titleMode == .rsaTitle {
+            self.navigationItem.title = "Send RSA Mail"
+        } else {
+            self.navigationItem.title = "Send Spam Mail"
+        }
+        
+        let tableViewCellNib = UINib(nibName: "UsersForSendingTableViewCell", bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(tableViewCellNib, forCellReuseIdentifier: "SendSpamTableViewCell")
+        tableView.register(tableViewCellNib, forCellReuseIdentifier: "UsersForSendingTableViewCell")
     }
     
     
@@ -37,6 +52,7 @@ class SendSpamMailViewController: UIViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
     
     // fetch the username of users in order
     func reloadData() {
@@ -67,7 +83,7 @@ class SendSpamMailViewController: UIViewController {
 }
 
 
-extension SendSpamMailViewController: UITableViewDelegate, UITableViewDataSource {
+extension UsersForSendingVievController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if users != nil {
@@ -76,9 +92,10 @@ extension SendSpamMailViewController: UITableViewDelegate, UITableViewDataSource
             return 0
         }
     }
-
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SendSpamTableViewCell", for: indexPath) as! SendSpamTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UsersForSendingTableViewCell", for: indexPath) as! UsersForSendingTableViewCell
         cell.delegate = self
         cell.index = indexPath
         cell.usernameLabel?.text = users![indexPath.row].username
@@ -86,26 +103,27 @@ extension SendSpamMailViewController: UITableViewDelegate, UITableViewDataSource
         
         return cell
     }
-    
-    
-
-    
 }
 
 
 
-extension SendSpamMailViewController: SendSpamTableViewCellDelegate {
+
+extension UsersForSendingVievController: UsersForSendingTableViewCellDelegate {
     func didTappedWriteMessageButton(index: Int) {
         if let vc = self.storyboard?.instantiateViewController(identifier: "SendMailViewController") as? SendMailViewController {
         vc.nameTitle = users[index].username
         vc.receiver = users[index].email
+        
+        if navigationItem.title == "Send AES Mail" {
+            vc.pageMode = .aesMail
+        } else if navigationItem.title == "Send RSA Mail" {
+            vc.pageMode = .rsaMail
+        } else {
+            vc.pageMode = .spamMail
+        }
+            
         self.navigationController?.pushViewController(vc, animated: true)
-
         }
     }
 }
-    
-    
-    
-    
 

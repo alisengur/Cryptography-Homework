@@ -148,12 +148,96 @@ class AsymmetricCryptoManager: NSObject {
     }
     
     
+     // MARK: - Cypher and decypher methods
+    func encryptMessageWithPublicKey(_ message: String, completion: @escaping (_ success: Bool, _ data: Data?, _ error: AsymmetricCryptoException?) -> Void) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { () -> Void in
+            
+            if let publicKeyRef = self.getPublicKeyReference() {
+                // prepare input input plain text
+                guard let messageData = message.data(using: String.Encoding.utf8) else {
+                    completion(false, nil, .wrongInputDataFormat)
+                    return
+                }
+                let plainText = (messageData as NSData).bytes.bindMemory(to: UInt8.self, capacity: messageData.count)
+                let plainTextLen = messageData.count
+                
+                // prepare output data buffer
+                var cipherData = Data(count: SecKeyGetBlockSize(publicKeyRef))
+                let cipherText = cipherData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
+                    return bytes
+                })
+                var cipherTextLen = cipherData.count
+                
+                let status = SecKeyEncrypt(publicKeyRef, .PKCS1, plainText, plainTextLen, cipherText, &cipherTextLen)
+                
+                // analyze results and call the completion in main thread
+                DispatchQueue.main.async(execute: { () -> Void in
+                    completion(status == errSecSuccess, cipherData, status == errSecSuccess ? nil : .unableToEncrypt)
+                    //cipherText.deinitialize()
+                })
+                return
+            } else { DispatchQueue.main.async(execute: { completion(false, nil, .keyNotFound) }) }
+        }
+    }
+    
+    func encryptMailWithPublicKey(mail: String, completion: @escaping(_ success: Bool, _ data: Data?, _ error: AsymmetricCryptoException?) -> Void) {
+        if let publicKeyRef = self.getPublicKeyReference() {
+            guard let mailData = mail.data(using: String.Encoding.utf8) else {
+                completion(false, nil, .wrongInputDataFormat)
+                return
+            }
+            let plainText = (mailData as NSData).bytes.bindMemory(to: UInt8.self, capacity: mailData.count)
+            let plainTextLen = mailData.count
+            var cipherData = Data(count: SecKeyGetBlockSize(publicKeyRef))
+            let cipherText = cipherData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
+                return bytes
+            })
+            var cipherTextLen = cipherData.count
+            let status = SecKeyEncrypt(publicKeyRef, .PKCS1, plainText, plainTextLen, cipherText, &cipherTextLen)
+            //if let cipherData = cipherData {
+            completion(true, cipherData, status == errSecSuccess ? nil : .unableToEncrypt)
+            return
+            //}
+        } else { completion(false, nil, .keyNotFound)}
+    }
+
+    
+    
+    func decryptMailWithPrivateKey(_ encryptedMail: Data, completion: @escaping (_ success: Bool, _ result: String?, _ error: AsymmetricCryptoException?) -> Void) {
+            if let privateKeyRef = self.getPrivateKeyReference() {
+                // prepare input input plain text
+                let encryptedText = (encryptedMail as NSData).bytes.bindMemory(to: UInt8.self, capacity: encryptedMail.count)
+                let encryptedTextLen = encryptedMail.count
+                // prepare output data buffer
+                var plainData = Data(count: kAsymmetricCryptoManagerCypheredBufferSize)
+                let plainText = plainData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
+                    return bytes
+                })
+                var plainTextLen = plainData.count
+                let status = SecKeyDecrypt(privateKeyRef, .PKCS1, encryptedText, encryptedTextLen, plainText, &plainTextLen)
+
+                // analyze results and call the completion in main thread
+                DispatchQueue.main.async(execute: { () -> Void in
+                    if status == errSecSuccess {
+                        // adjust NSData length
+                        plainData.count = plainTextLen
+                        // Generate and return result string
+                        if let string = NSString(data: plainData as Data, encoding: String.Encoding.utf8.rawValue) as String? {
+                            completion(true, string, nil)
+                        } else { completion(false, nil, .unableToDecrypt) }
+                    } else { completion(false, nil, .unableToDecrypt) }
+                    //plainText.deinitialize()
+                })
+                return
+            } else { DispatchQueue.main.async(execute: { completion(false, nil, .keyNotFound) }) }
+    }
+    
+    
+    
     // MARK: - Sign and verify signature.
     
     func signMessageWithPrivateKey(_ message: String, completion: @escaping (_ success: Bool, _ data: Data?, _ error: AsymmetricCryptoException?) -> Void) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { () -> Void in
             var error: AsymmetricCryptoException? = nil
-            
             if let privateKeyRef = self.getPrivateKeyReference() {
                 // result data
                 var resultData = Data(count: SecKeyGetBlockSize(privateKeyRef))
@@ -161,14 +245,11 @@ class AsymmetricCryptoManager: NSObject {
                     return bytes
                 })
                 var resultLength = resultData.count
-                
                 if let plainData = message.data(using: String.Encoding.utf8) {
- 
                     var hashData = plainData.sha256()
                     let hash = hashData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
                         return bytes
                     })
-                    
                     // sign the hash
                     let status = SecKeyRawSign(privateKeyRef, SecPadding.PKCS1SHA1, hash, hashData.count, resultPointer, &resultLength)
                     if status != errSecSuccess { error = .unableToEncrypt }
@@ -186,7 +267,7 @@ class AsymmetricCryptoManager: NSObject {
                     //resultPointer.destroy()
                 })
             } else { DispatchQueue.main.async(execute: { completion(false, nil, .keyNotFound) }) }
-        }
+        
     }
     
     
@@ -194,31 +275,56 @@ class AsymmetricCryptoManager: NSObject {
     
     
     func verifySignaturePublicKey(_ data: Data, signatureData: Data, completion: @escaping (_ success: Bool, _ error: AsymmetricCryptoException?) -> Void) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { () -> Void in
-            var error: AsymmetricCryptoException? = nil
+        var error: AsymmetricCryptoException? = nil
+        if let publicKeyRef = self.getPublicKeyReference() {
+            // hash data
+            var hashData = data.sha256()
+            let hash = hashData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
+                return bytes
+            })
 
-            if let publicKeyRef = self.getPublicKeyReference() {
-                // hash data
-                var hashData = data.sha256()
-                let hash = hashData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
-                    return bytes
-                })
+            let signaturePointer = (signatureData as NSData).bytes.bindMemory(to: UInt8.self, capacity: signatureData.count)
+            let signatureLength = signatureData.count
+            
+            let status = SecKeyRawVerify(publicKeyRef, SecPadding.PKCS1SHA1, hash, hashData.count, signaturePointer, signatureLength)
+            
+            if status != errSecSuccess { error = .unableToDecrypt }
 
-                let signaturePointer = (signatureData as NSData).bytes.bindMemory(to: UInt8.self, capacity: signatureData.count)
-                let signatureLength = signatureData.count
-                
-                let status = SecKeyRawVerify(publicKeyRef, SecPadding.PKCS1SHA1, hash, hashData.count, signaturePointer, signatureLength)
-                
-                if status != errSecSuccess { error = .unableToDecrypt }
-                
-                // analyze results and call the completion in main thread
-                //hash.deinitialize()
-                DispatchQueue.main.async(execute: { () -> Void in
-                    completion(status == errSecSuccess, error)
-                })
-                return
-            } else { DispatchQueue.main.async(execute: { completion(false, .keyNotFound) }) }
+            if status == errSecSuccess {
+                completion(true, error)
+            }
+            // analyze results and call the completion in main thread
+            //hash.deinitialize()
+            DispatchQueue.main.async(execute: { () -> Void in
+                completion(status == errSecSuccess, error)
+            })
+            return
+        } else {
+            DispatchQueue.main.async(execute: { completion(false, .keyNotFound) })
+            //completion(false, .keyNotFound)
         }
+    }
+    
+    
+    func verifySignatureWithPublicKey(data: Data, signatureData: Data) -> Bool {
+        //var error: AsymmetricCryptoException? = nil
+        var success = false
+        if let publicKeyRef = self.getPublicKeyReference() {
+            // hash data
+            var hashData = data.sha256()
+            let hash = hashData.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<UInt8>) -> UnsafeMutablePointer<UInt8> in
+                return bytes
+            })
+            let signaturePointer = (signatureData as NSData).bytes.bindMemory(to: UInt8.self, capacity: signatureData.count)
+            let signatureLength = signatureData.count
+            let status = SecKeyRawVerify(publicKeyRef, SecPadding.PKCS1SHA1, hash, hashData.count, signaturePointer, signatureLength)
+            if status != noErr {
+                success = true
+            } else {
+                success = false
+            }
+        }
+        return success
     }
     
     

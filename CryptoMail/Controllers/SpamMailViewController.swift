@@ -48,28 +48,35 @@ class SpamMailViewController: UIViewController {
     
     @IBAction func navigateToSendSpam(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let vc = mainStoryboard.instantiateViewController(identifier: "SendSpamMailViewController") as? SendSpamMailViewController {
+        if let vc = mainStoryboard.instantiateViewController(identifier: "UsersForSendingVievController") as? UsersForSendingVievController {
+            vc.titleMode = .spamTitle
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     
     @IBAction func navigateToSpamAnalysis(_ sender: Any) {
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let vc = mainStoryBoard.instantiateViewController(withIdentifier: "SpamAnalysisViewController") as? SpamAnalysisViewController {
-            vc.concatenatedText = self.sendConcatMailToSpamAnalysis()
-            vc.mailOne = messages[0].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            vc.mailTwo = messages[1].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            vc.mailThree = messages[2].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            vc.mailFour = messages[3].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            vc.mailFive = messages[4].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            
-            vc.hashOne = messages[0].hashMessage
-            vc.hashTwo = messages[1].hashMessage
-            vc.hashThree = messages[2].hashMessage
-            vc.hashFour = messages[3].hashMessage
-            vc.hashFive = messages[4].hashMessage
-            self.navigationController?.pushViewController(vc, animated: true)
+        if messages.count < 5 {
+            print("Must at least 5 spam mail exist for navigate to spam analysis")
+            return
+        } else {
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            if let vc = mainStoryBoard.instantiateViewController(withIdentifier: "SpamAnalysisViewController") as? SpamAnalysisViewController {
+                vc.concatenatedText = self.sendConcatMailToSpamAnalysis()
+                vc.mailOne = messages[0].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+                vc.mailTwo = messages[1].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+                vc.mailThree = messages[2].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+                vc.mailFour = messages[3].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+                vc.mailFive = messages[4].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+                
+                vc.hashOne = messages[0].hashMessage
+                vc.hashTwo = messages[1].hashMessage
+                vc.hashThree = messages[2].hashMessage
+                vc.hashFour = messages[3].hashMessage
+                vc.hashFive = messages[4].hashMessage
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
         }
     }
     
@@ -111,8 +118,13 @@ extension SpamMailViewController: UITableViewDataSource, UITableViewDelegate {
         cell.senderLabel.text = messages[indexPath.row].sender
         cell.receiverLabel.text = messages[indexPath.row].receiver
         
-        let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-        cell.messageLabel.text = decryptedMessage
+        // decrypt message
+        if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
+            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            cell.messageLabel.text = decryptedMessage
+        } else {
+            cell.messageLabel.text = messages[indexPath.row].message
+        }
         
         if controlIntegrityOfMessages(message: messages[indexPath.row].message, hashMail: messages[indexPath.row].hashMessage) {
             cell.cautionImage.isHidden = true
@@ -126,6 +138,7 @@ extension SpamMailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(identifier: "DetailMailViewController") as? DetailMailViewController {
+            vc.pageMode = .spam
             vc.senderTitle = "From: '\(messages[indexPath.row].sender)'"
             vc.receiverTitle = "To: '\(messages[indexPath.row].receiver)'"
             let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
