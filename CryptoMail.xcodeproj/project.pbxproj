@@ -39,6 +39,9 @@
 		227827452444E081009FBB7C /* AESEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227827442444E081009FBB7C /* AESEncryption.swift */; };
 		2278C796244F829100E413C3 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278C795244F829100E413C3 /* RandomNumberGenerator.swift */; };
 		227E303724624D300048DA9D /* DigitalSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227E303624624D300048DA9D /* DigitalSignature.swift */; };
+		22998E26246C7A9C007326DC /* SendWatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22998E25246C7A9C007326DC /* SendWatermarkViewController.swift */; };
+		22998E28246CB10B007326DC /* DetailWatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22998E27246CB10B007326DC /* DetailWatermarkViewController.swift */; };
+		22998E2A246CBE29007326DC /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22998E29246CBE29007326DC /* Keys.swift */; };
 		22BF13722464ED0600FBAA52 /* AsymmetricCryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF13712464ED0600FBAA52 /* AsymmetricCryptoManager.swift */; };
 		22CC11AC2450D5920092E4C7 /* DetailMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */; };
 		DEA4709D61016328DDD86AC6 /* Pods_CryptoMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C83BEC3EB12ECBB87A9C0C /* Pods_CryptoMail.framework */; };
@@ -80,6 +83,9 @@
 		227827442444E081009FBB7C /* AESEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESEncryption.swift; sourceTree = "<group>"; };
 		2278C795244F829100E413C3 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		227E303624624D300048DA9D /* DigitalSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalSignature.swift; sourceTree = "<group>"; };
+		22998E25246C7A9C007326DC /* SendWatermarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendWatermarkViewController.swift; sourceTree = "<group>"; };
+		22998E27246CB10B007326DC /* DetailWatermarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWatermarkViewController.swift; sourceTree = "<group>"; };
+		22998E29246CBE29007326DC /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		22BF13712464ED0600FBAA52 /* AsymmetricCryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsymmetricCryptoManager.swift; sourceTree = "<group>"; };
 		22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMailViewController.swift; sourceTree = "<group>"; };
 		27C83BEC3EB12ECBB87A9C0C /* Pods_CryptoMail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoMail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +155,8 @@
 				22CC11AB2450D5910092E4C7 /* DetailMailViewController.swift */,
 				2260330C2468990400B2429F /* SpamAnalysisViewController.swift */,
 				226F1F7224699DC90018D92A /* UsersForSendingVievController.swift */,
+				22998E25246C7A9C007326DC /* SendWatermarkViewController.swift */,
+				22998E27246CB10B007326DC /* DetailWatermarkViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 			children = (
 				22201052243CF8010023C851 /* User.swift */,
 				22201054243CF81D0023C851 /* Message.swift */,
+				22998E29246CBE29007326DC /* Keys.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +346,7 @@
 				2260330124682D0D00B2429F /* SpamMailViewController.swift in Sources */,
 				227827452444E081009FBB7C /* AESEncryption.swift in Sources */,
 				2220105A243D10C50023C851 /* UsersViewController.swift in Sources */,
+				22998E26246C7A9C007326DC /* SendWatermarkViewController.swift in Sources */,
 				223AA285243E10DB00618257 /* UsersTableViewCell.swift in Sources */,
 				22201049243CCBAF0023C851 /* AuthService.swift in Sources */,
 				223AA28C243E34CD00618257 /* MailsTableViewCell.swift in Sources */,
@@ -349,8 +359,10 @@
 				2260330424683D1600B2429F /* SpamMailsTableViewCell.swift in Sources */,
 				226F1F71246992A40018D92A /* RSAMailsViewController.swift in Sources */,
 				22201053243CF8010023C851 /* User.swift in Sources */,
+				22998E28246CB10B007326DC /* DetailWatermarkViewController.swift in Sources */,
 				22201030243CC3380023C851 /* SceneDelegate.swift in Sources */,
 				22201055243CF81D0023C851 /* Message.swift in Sources */,
+				22998E2A246CBE29007326DC /* Keys.swift in Sources */,
 				2260330D2468990400B2429F /* SpamAnalysisViewController.swift in Sources */,
 				2220104F243CE62B0023C851 /* SettingsTableViewController.swift in Sources */,
 			);

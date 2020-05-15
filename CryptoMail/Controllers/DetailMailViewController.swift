@@ -44,9 +44,7 @@ class DetailMailViewController: UIViewController {
         self.mailDescriptionLabel.layer.cornerRadius = 8
         senderTitleLabel.text = self.senderTitle
         receiverTitleLabel.text = self.receiverTitle
-        mailTextView.text = self.mailText
-//        mailDescriptionLabel.text = self.mailDescription
-//        mailDescriptionLabel.backgroundColor = mailDescLabelBackgroundColor
+        self.mailTextView.text = self.mailText
         hashMailFromDatabase.text = hashedMailFromDatabase
         hashMail.text = hashedMail
         self.mailTextView.isScrollEnabled = false
@@ -59,25 +57,15 @@ class DetailMailViewController: UIViewController {
     }
     
     @IBAction func generateHashOfMail(_ sender: Any) {
-        if self.pageMode == .aes || self.pageMode == .spam {
-            let mail = self.mailText
-            let encryptedMail = mail?.aesEncrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            let hashedMail = encryptedMail?.sha256()
-            self.hashMail.text = hashedMail
-        } else {
-            if let mail = self.mailText {
-                let hashedMail = mail.sha256()
-                self.hashMail.text = hashedMail
-            }
-        }
-        
-        
+        let hashedMail = self.mailTextView.text.sha256()
+        self.hashMail.text = hashedMail
+
         if verifyMail(hashMail: hashMail.text, hashMailFromDatabase: hashMailFromDatabase.text) {
             self.mailDescriptionLabel.text = "This mail verified"
             self.mailDescriptionLabel.backgroundColor = UIColor(red: 125/255, green: 200/255, blue: 134/255, alpha: 1.0)
             self.mailDescriptionLabel.isHidden = false
         } else {
-            self.mailDescriptionLabel.text = "This mail have been altered or corrupted or signed by a unkown person"
+            self.mailDescriptionLabel.text = pageMode == .aes ? "This mail have been altered or corrupted" : "This mail have been altered or corrupted or signed by a unkown person"
             self.mailDescriptionLabel.backgroundColor = UIColor(red: 255/255, green: 121/255, blue: 121/255, alpha: 1.0)
             self.mailDescriptionLabel.isHidden = false
         }
@@ -88,6 +76,7 @@ class DetailMailViewController: UIViewController {
         return hashMail == hashMailFromDatabase ? true : false
     }
 }
+
 
 extension DetailMailViewController: UITextViewDelegate {
     

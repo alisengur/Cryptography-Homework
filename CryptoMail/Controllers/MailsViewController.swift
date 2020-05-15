@@ -17,6 +17,8 @@ class MailsViewController: UIViewController {
     
 
     var messages: Results<Message>!
+    var key: Results<Key>!
+    
     let currentUser = Auth.auth().currentUser?.email
     
     
@@ -47,7 +49,7 @@ class MailsViewController: UIViewController {
         // fetch the current user messages
         let predicate = NSPredicate(format: "aes = true")
         messages = realm.objects(Message.self).filter(predicate)
-        
+        key = realm.objects(Key.self)
     }
     
     
@@ -59,8 +61,10 @@ class MailsViewController: UIViewController {
         }
     }
     
-    
-    
+    func decrypt(messageData: String) -> String? {
+        let encryptedMessage = messageData.aesDecrypt(key: key[0].key, iv: "1234567812345678")
+        return encryptedMessage
+    }
 }
 
 
@@ -85,19 +89,32 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.senderLabel.text = messages[indexPath.row].sender
         cell.receiverLabel.text = messages[indexPath.row].receiver
         
-        // decrypted message
+        
         if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
-            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            cell.messageLabel.text = decryptedMessage
-        } else {
-            cell.messageLabel.text = messages[indexPath.row].message
-        }
-        
-        
-        if controlIntegrityOfMessages(message: messages[indexPath.row].message, hashMail: messages[indexPath.row].hashMessage) {
+            // if message is not nil, this message is not image
+            if messages[indexPath.row].message != nil {
+                if let message = messages[indexPath.row].message {
+                    if let decryptedMessage = decrypt(messageData: message) {
+                        cell.messageLabel.text = decryptedMessage /// add decrypted message to message label
+                        if controlIntegrityOfMessages(message: decryptedMessage, hashMail: messages[indexPath.row].hashMessage) {
+                            cell.cautionImage.isHidden = true
+                        } else {
+                            cell.cautionImage.isHidden = false ///  if digest of the messages are not matched, caution image bacome a visible
+                        }
+                    }
+                }
+                
+            } else { // if message is nil, so this message is an image
+                cell.cautionImage.isHidden = true
+                cell.messageLabel.text = "📷 Photo"
+            }
+        } else { // if logged in with a different user (not sender and receiver)
             cell.cautionImage.isHidden = true
-        } else {
-            cell.cautionImage.isHidden = false
+            if messages[indexPath.row].message != nil {
+                cell.messageLabel.text = messages[indexPath.row].message
+            } else {
+                cell.messageLabel.text = "📷 Photo"
+            }
         }
         return cell
     }
@@ -106,15 +123,40 @@ extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let vc = mainStoryboard.instantiateViewController(identifier: "DetailMailViewController") as? DetailMailViewController {
-            vc.pageMode = .aes
-            vc.senderTitle = "From: '\(messages[indexPath.row].sender)'"
-            vc.receiverTitle = "To: '\(messages[indexPath.row].receiver)'"
-            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-            vc.mailText = decryptedMessage
-            vc.hashedMailFromDatabase = messages[indexPath.row].hashMessage
-            self.navigationController?.pushViewController(vc, animated: true)
+        if messages[indexPath.row].message != nil {
+            if let vc = mainStoryboard.instantiateViewController(identifier: "DetailMailViewController") as? DetailMailViewController {
+                vc.pageMode = .aes
+                vc.senderTitle = "From: '\(messages[indexPath.row].sender)'"
+                vc.receiverTitle = "To: '\(messages[indexPath.row].receiver)'"
+                
+                if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
+                    if let message = messages[indexPath.row].message {
+                       let decryptedMessage = decrypt(messageData: message)
+                        vc.mailText = decryptedMessage
+                    }
+                } else {
+                    if let message = messages[indexPath.row].message {
+                        vc.mailText = message
+                    }
+                }
+                vc.hashedMailFromDatabase = messages[indexPath.row].hashMessage
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        } else {
+            if let vc = mainStoryboard.instantiateViewController(identifier: "DetailWatermarkViewController") as? DetailWatermarkViewController {
+                if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
+                    if let watermarkMessage = decrypt(messageData: messages[indexPath.row].watermark!) {
+                        print("watermark message : \(watermarkMessage)")
+                        vc.imageData = messages[indexPath.row].watermarkImageData
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    vc.imageData = messages[indexPath.row].imageData
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
+
     }
     
     

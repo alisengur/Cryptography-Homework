@@ -16,7 +16,7 @@ class SpamMailViewController: UIViewController {
     var messages: Results<Message>!
     let currentUser = Auth.auth().currentUser?.email
     var concatenatedMail: [String] = []
-    //let mailOne: String?
+    var key: Results<Key>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class SpamMailViewController: UIViewController {
         let realm = try! Realm()
         let predicate = NSPredicate(format: "spam = true")
         messages = realm.objects(Message.self).filter(predicate)
-        
+        key = realm.objects(Key.self)
     }
     
     
@@ -54,20 +54,28 @@ class SpamMailViewController: UIViewController {
         }
     }
     
+    func decrypt(messageData: String) -> String? {
+        let encryptedMessage = messageData.aesDecrypt(key: key[0].key, iv: "1234567812345678")
+        return encryptedMessage
+    }
+    
     
     @IBAction func navigateToSpamAnalysis(_ sender: Any) {
         if messages.count < 5 {
-            print("Must at least 5 spam mail exist for navigate to spam analysis")
+            let alert = UIAlertController(title: "Warning", message: "There must be at least five mail to pass to the analysis screen", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return
         } else {
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
             if let vc = mainStoryBoard.instantiateViewController(withIdentifier: "SpamAnalysisViewController") as? SpamAnalysisViewController {
                 vc.concatenatedText = self.sendConcatMailToSpamAnalysis()
-                vc.mailOne = messages[0].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-                vc.mailTwo = messages[1].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-                vc.mailThree = messages[2].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-                vc.mailFour = messages[3].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
-                vc.mailFive = messages[4].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+                // use top five messages for spam analysis
+                vc.mailOne = decrypt(messageData: messages[0].message!)
+                vc.mailTwo = decrypt(messageData: messages[1].message!)
+                vc.mailThree = decrypt(messageData: messages[2].message!)
+                vc.mailFour = decrypt(messageData: messages[3].message!)
+                vc.mailFive = decrypt(messageData: messages[4].message!)
                 
                 vc.hashOne = messages[0].hashMessage
                 vc.hashTwo = messages[1].hashMessage
@@ -84,7 +92,7 @@ class SpamMailViewController: UIViewController {
     func sendConcatMailToSpamAnalysis() -> String {
         concatenatedMail.removeAll()
         for i in 0..<messages.count {
-            if let decryptedMessage = messages[i].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678") {
+            if let decryptedMessage = decrypt(messageData: messages[i].message!) {
                 self.concatenateMail(mail: decryptedMessage)
             }
         }
@@ -120,17 +128,20 @@ extension SpamMailViewController: UITableViewDataSource, UITableViewDelegate {
         
         // decrypt message
         if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
-            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            let decryptedMessage = decrypt(messageData: messages[indexPath.row].message!)
             cell.messageLabel.text = decryptedMessage
         } else {
             cell.messageLabel.text = messages[indexPath.row].message
         }
         
-        if controlIntegrityOfMessages(message: messages[indexPath.row].message, hashMail: messages[indexPath.row].hashMessage) {
-            cell.cautionImage.isHidden = true
-        } else {
-            cell.cautionImage.isHidden = false
+        if let decryptedMessage = decrypt(messageData: messages[indexPath.row].message!) {
+            if controlIntegrityOfMessages(message: decryptedMessage, hashMail: messages[indexPath.row].hashMessage) {
+                cell.cautionImage.isHidden = true
+            } else {
+                cell.cautionImage.isHidden = false
+            }
         }
+        
         return cell
     }
     
@@ -141,7 +152,7 @@ extension SpamMailViewController: UITableViewDataSource, UITableViewDelegate {
             vc.pageMode = .spam
             vc.senderTitle = "From: '\(messages[indexPath.row].sender)'"
             vc.receiverTitle = "To: '\(messages[indexPath.row].receiver)'"
-            let decryptedMessage = messages[indexPath.row].message.aesDecrypt(key: "pw01pw23pw45pw67", iv: "1234567812345678")
+            let decryptedMessage = decrypt(messageData: messages[indexPath.row].message!)
             vc.mailText = decryptedMessage
             vc.hashedMailFromDatabase = messages[indexPath.row].hashMessage
             self.navigationController?.pushViewController(vc, animated: true)

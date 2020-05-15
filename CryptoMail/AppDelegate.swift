@@ -19,8 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print("Realm is located at:", uiRealm.configuration.fileURL!)
+        
+//        let keyText = "password12345678"
+//        let realm = try! Realm()
+//        let key = Key()
+//        key.key = keyText
+//        key.writeToRealm()
 
+        print("Realm is located at:", uiRealm.configuration.fileURL!)
+        
         FirebaseApp.configure()
         return true
     }

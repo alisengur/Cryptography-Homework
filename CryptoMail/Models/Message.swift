@@ -13,10 +13,13 @@ import RealmSwift
 class Message: Object {
     
     @objc dynamic var sender = ""
-    @objc dynamic var message = ""
+    @objc dynamic var message: String? = nil
     @objc dynamic var hashMessage = ""
     @objc dynamic var signedMessage: String? = nil
     @objc dynamic var receiver = ""
+    @objc dynamic var imageData: Data? = nil
+    @objc dynamic var watermarkImageData: Data? = nil
+    @objc dynamic var watermark: String? = nil
     @objc dynamic var aes = false
     @objc dynamic var rsa = false
     @objc dynamic var spam = false

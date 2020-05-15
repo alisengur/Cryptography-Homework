@@ -32,6 +32,7 @@
                             <constraint firstAttribute="height" constant="25" id="7Ne-EA-pAs"/>
                             <constraint firstAttribute="width" constant="60" id="CZm-ti-IZk"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Write"/>
                         <connections>
@@ -39,28 +40,46 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3E-KF-jMU">
-                        <rect key="frame" x="16" y="26" width="32" height="16"/>
+                        <rect key="frame" x="16" y="26" width="32" height="13"/>
                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fte-1X-jlz">
+                        <rect key="frame" x="153" y="9" width="90" height="25"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="TnW-R6-T9b"/>
+                            <constraint firstAttribute="height" constant="25" id="mY8-SD-K3S"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Send Image"/>
+                        <connections>
+                            <action selector="sendImageButtonDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GdH-pg-dyh"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="tbN-7W-RJM" secondAttribute="bottom" constant="9" id="0l1-q4-ojT"/>
+                    <constraint firstItem="tbN-7W-RJM" firstAttribute="leading" secondItem="fte-1X-jlz" secondAttribute="trailing" constant="8" id="1E1-LF-ckF"/>
                     <constraint firstItem="O3E-KF-jMU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1PD-Mx-lhe"/>
                     <constraint firstAttribute="bottom" secondItem="O3E-KF-jMU" secondAttribute="bottom" constant="4" id="2xv-A6-EI0"/>
-                    <constraint firstItem="tbN-7W-RJM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P4t-dX-zjJ" secondAttribute="trailing" constant="10" id="7D4-nJ-80Z"/>
-                    <constraint firstItem="tbN-7W-RJM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O3E-KF-jMU" secondAttribute="trailing" constant="10" id="C9S-Z7-Uzp"/>
                     <constraint firstItem="O3E-KF-jMU" firstAttribute="top" secondItem="P4t-dX-zjJ" secondAttribute="bottom" id="MQY-w6-nq9"/>
                     <constraint firstAttribute="trailing" secondItem="tbN-7W-RJM" secondAttribute="trailing" constant="9" id="NpE-08-ZHk"/>
                     <constraint firstItem="tbN-7W-RJM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="eXb-Cv-pHD"/>
+                    <constraint firstItem="fte-1X-jlz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="kXh-rG-Wj4"/>
+                    <constraint firstItem="fte-1X-jlz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P4t-dX-zjJ" secondAttribute="trailing" constant="10" id="n4L-O2-gmW"/>
+                    <constraint firstAttribute="bottom" secondItem="fte-1X-jlz" secondAttribute="bottom" constant="9" id="nJ6-KL-Kq5"/>
                     <constraint firstItem="P4t-dX-zjJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="qGv-Xk-wtg"/>
                     <constraint firstItem="P4t-dX-zjJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tjh-bU-BSm"/>
+                    <constraint firstItem="fte-1X-jlz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O3E-KF-jMU" secondAttribute="trailing" constant="10" id="tpL-Nm-oyP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="emailLabel" destination="O3E-KF-jMU" id="4Sb-dF-Lgu"/>
+                <outlet property="sendImageButton" destination="fte-1X-jlz" id="oTt-g4-Dp1"/>
                 <outlet property="usernameLabel" destination="P4t-dX-zjJ" id="iqH-RS-M6Q"/>
                 <outlet property="writeButton" destination="tbN-7W-RJM" id="HLP-sC-XBQ"/>
             </connections>

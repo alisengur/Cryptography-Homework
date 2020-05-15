@@ -18,6 +18,14 @@ enum TitleMode {
     case spamTitle
 }
 
+enum WaterMarkCorner
+{
+    case TopLeft
+    case TopRight
+    case BottomLeft
+    case BottomRight
+}
+
 class UsersForSendingVievController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -100,7 +108,13 @@ extension UsersForSendingVievController: UITableViewDelegate, UITableViewDataSou
         cell.index = indexPath
         cell.usernameLabel?.text = users![indexPath.row].username
         cell.emailLabel?.text = users![indexPath.row].email
-        
+        if navigationItem.title == "Send AES Mail" {
+            cell.sendImageButton.isHidden = false
+        } else if navigationItem.title == "Send RSA Mail" {
+            cell.sendImageButton.isHidden = true
+        } else {
+            cell.sendImageButton.isHidden = true
+        }
         return cell
     }
 }
@@ -109,6 +123,18 @@ extension UsersForSendingVievController: UITableViewDelegate, UITableViewDataSou
 
 
 extension UsersForSendingVievController: UsersForSendingTableViewCellDelegate {
+    func sendImageButtonDidTapped(index: Int) {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "SendWatermarkViewController") as? SendWatermarkViewController {
+//            let imageData = UIImage(named: "monalisa")
+//            let pngData = imageData?.pngData()!
+//            let image = UIImage(data: pngData!)
+//            vc.image = image
+            vc.nameTitle = users[index].username
+            vc.receiver = users[index].email
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func didTappedWriteMessageButton(index: Int) {
         if let vc = self.storyboard?.instantiateViewController(identifier: "SendMailViewController") as? SendMailViewController {
         vc.nameTitle = users[index].username
@@ -125,5 +151,8 @@ extension UsersForSendingVievController: UsersForSendingTableViewCellDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+
+
 }
 

@@ -51,6 +51,7 @@ class RSAMailsViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let vc = mainStoryboard.instantiateViewController(identifier: "UsersForSendingVievController") as? UsersForSendingVievController {
             vc.titleMode = .rsaTitle
+            
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -76,9 +77,9 @@ extension RSAMailsViewController: UITableViewDataSource, UITableViewDelegate {
         // decrypted message
         
         if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
-            let encryptedMail = messages[indexPath.row].message
-            if let encrytedData = Data(base64Encoded: encryptedMail, options: []) {
-                AsymmetricCryptoManager.sharedInstance.decryptMailWithPrivateKey(encrytedData) { (success, result, error) -> Void in
+            if let encryptedMail = messages[indexPath.row].message {
+                let encrytedData = Data(base64Encoded: encryptedMail, options: [])
+                AsymmetricCryptoManager.sharedInstance.decryptMailWithPrivateKey(encrytedData!) { (success, result, error) -> Void in
                     if success {  // decrypt data by sender's private key
                         cell.messageLabel.text = result!  // write decrypted data
                         print("Decrypted message : \(result!)")
@@ -88,7 +89,7 @@ extension RSAMailsViewController: UITableViewDataSource, UITableViewDelegate {
                             if success {
                                 let b64encoded = data!.base64EncodedString(options: [])  // signed message
                                 if b64encoded == self.messages[indexPath.row].signedMessage {
-                                    cell.signDescriptionLabel.text = "Signature verification successful"
+                                    cell.signDescriptionLabel.text = "Signature verification succeed"
                                     cell.cautionImage.isHidden = true
                                 } else {
                                     cell.signDescriptionLabel.text = "Signature verification failed"
@@ -99,22 +100,8 @@ extension RSAMailsViewController: UITableViewDataSource, UITableViewDelegate {
                                 print("Error signing message")
                             }
                         }
-                        
-                        
-//                        if let resultData = result?.data(using: String.Encoding.utf8), let signedData = Data(base64Encoded: self.messages[indexPath.row].signedMessage!) {
-//                            AsymmetricCryptoManager.sharedInstance.verifySignaturePublicKey(resultData, signatureData: signedData) { (success, error) -> Void in
-//                                if success {
-//                                    cell.signDescriptionLabel.text = "Signature verification successful"
-//                                    cell.cautionImage.isHidden = true
-//                                } else {
-//                                    cell.signDescriptionLabel.text = "Signature verification not successful"
-//                                    cell.signDescriptionLabel.textColor = UIColor.red
-//                                    cell.cautionImage.isHidden = false
-//                                }
-//                            }
-//                        }
                     } else {
-                        print("Decrypting error")
+                        print("decryption error")
                     }
                 }
             }
@@ -132,18 +119,26 @@ extension RSAMailsViewController: UITableViewDataSource, UITableViewDelegate {
             vc.senderTitle = "From: '\(messages[indexPath.row].sender)'"
             vc.receiverTitle = "To: '\(messages[indexPath.row].receiver)'"
             
-            if let encrytedData = Data(base64Encoded: messages[indexPath.row].message, options: []) {
-                AsymmetricCryptoManager.sharedInstance.decryptMailWithPrivateKey(encrytedData) { (success, result, error) -> Void in
-                    if success {
-                        print(result!)
-                        vc.mailText = result!
-                        vc.hashedMailFromDatabase = self.messages[indexPath.row].hashMessage
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        print("Decrypting error")
+            if messages[indexPath.row].sender == self.currentUser || messages[indexPath.row].receiver == self.currentUser {
+                if let encryptedMail = messages[indexPath.row].message {
+                    let encrytedData = Data(base64Encoded: encryptedMail, options: [])
+                    AsymmetricCryptoManager.sharedInstance.decryptMailWithPrivateKey(encrytedData!) { (success, result, error) -> Void in
+                        if success {
+                            print(result!)
+                            vc.mailTextView.text = result
+                        } else {
+                            print("Decrypting error")
+                        }
                     }
                 }
+            } else {
+                //vc.mailText = self.messages[indexPath.row].message
+                vc.mailTextView.text = self.messages[indexPath.row].message
             }
+            vc.hashedMailFromDatabase = self.messages[indexPath.row].hashMessage
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+
         }
     }
     

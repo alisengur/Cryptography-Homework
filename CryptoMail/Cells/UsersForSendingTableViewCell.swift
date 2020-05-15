@@ -11,6 +11,7 @@ import UIKit
 
 protocol UsersForSendingTableViewCellDelegate {
     func didTappedWriteMessageButton(index: Int)
+    func sendImageButtonDidTapped(index: Int)
 }
 
 
@@ -19,6 +20,7 @@ class UsersForSendingTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var writeButton: UIButton!
+    @IBOutlet weak var sendImageButton: UIButton!
     
     var delegate: UsersForSendingTableViewCellDelegate?
     var index: IndexPath?
@@ -28,6 +30,7 @@ class UsersForSendingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         writeButton.layer.cornerRadius = 5
+        sendImageButton.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,4 +43,7 @@ class UsersForSendingTableViewCell: UITableViewCell {
         delegate?.didTappedWriteMessageButton(index: (index!.row))
     }
     
+    @IBAction func sendImageButtonDidTapped(_ sender: Any) {
+        delegate?.sendImageButtonDidTapped(index: (index!.row))
+    }
 }
