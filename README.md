@@ -3,6 +3,7 @@ Project for cryptography lecture
 
 - Sending message securely
 - Authentication via Firebase
+- Saving and retrieving data from Realm Database 
 - Symmetric cyphering(AES algorithm) via CryptoSwift
 - Asymmetric cyphering(RSA Algorithm - Generated keypair and stored in keychain)
 - Hashing messages with SHA256 algorithm
