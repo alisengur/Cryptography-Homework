@@ -259,7 +259,7 @@
         <!--AES Mails-->
         <scene sceneID="x5N-Wn-GKH">
             <objects>
-                <viewController storyboardIdentifier="MailsViewController" id="LD5-Zv-YNg" customClass="MailsViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MailsViewController" id="LD5-Zv-YNg" customClass="AESMailsViewController" customModule="CryptoMail" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fE3-AR-8gZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,7 +286,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="LN3-6x-h1R" id="QdH-a4-L6a"/>
+                        <outlet property="tableView" destination="LN3-6x-h1R" id="gKa-ke-vtk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="off-04-UPJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1312,7 +1312,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter watermark" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sbf-Ev-BWR">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the watermark" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sbf-Ev-BWR">
                                 <rect key="frame" x="20" y="75" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1334,7 +1334,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qC-7b-pHg">
-                                <rect key="frame" x="155" y="671" width="105" height="40"/>
+                                <rect key="frame" x="154.5" y="671" width="105" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="105" id="7kC-Mm-aHe"/>

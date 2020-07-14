@@ -11,7 +11,7 @@ import RealmSwift
 import FirebaseAuth
 
 
-class MailsViewController: UIViewController {
+class AESMailsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -71,7 +71,7 @@ class MailsViewController: UIViewController {
 
 
 //MARK: -TableView functions
-extension MailsViewController: UITableViewDataSource, UITableViewDelegate {
+extension AESMailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if messages != nil {

@@ -20,12 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
+        //MARK: - Save the symmetric key to database (This code should be run only once before starting the application)
 //        let keyText = "password12345678"
 //        let realm = try! Realm()
 //        let key = Key()
 //        key.key = keyText
 //        key.writeToRealm()
 
+        
         print("Realm is located at:", uiRealm.configuration.fileURL!)
         
         FirebaseApp.configure()
