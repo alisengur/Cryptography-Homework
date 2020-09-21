@@ -1,7 +1,7 @@
 # Cryptography-Homework
 Project for cryptography lecture
 
-- Sending a message as securely
+- Sending message securely
 - Authentication via Firebase
 - Saving and retrieving data from Realm Database 
 - Symmetric encryption(AES algorithm) via CryptoSwift
@@ -9,5 +9,5 @@ Project for cryptography lecture
 - Hashing a message with SHA256 algorithm
 - Random number generation, creating spam mail and spam analysis
 - Sign and verify messages(Digital Signatures)
-- Adding a text watermark to an image and sending image
+- sending picture messages with text watermark
 
